@@ -1,50 +1,40 @@
-function solve(array) {
+function solve(input) {
 
-    for (let info of array) {
-        let command = info.split(' ');
-        let object = {
-            name: '',
-        };
-        let isDate = false;
-        let isDirected = false;
+    let array = [];
 
-        if (command[0] === 'addMovie') {
-            let movieName = info.split('addMovie ');
-            object.name = movieName[1];
-
-            for (let newInfo of array) {
-                let splittedNewInfo = newInfo.split(' ');
-
-                if (splittedNewInfo.includes('directedBy')) {
-                    let movieNameDirectedBy = newInfo.split(' directedBy ');
-
-                    if (movieName[1] === movieNameDirectedBy[0]) {
-                        object.director = movieNameDirectedBy[1];
-                        isDate = true;
-                    }
-                }
-                else if (splittedNewInfo.includes('onDate')) {
-                    let splittedByOnDate = newInfo.split(' onDate ');
-
-                    if (movieName[1] === splittedByOnDate[0]) {
-                        object.date = splittedByOnDate[1];
-                        isDirected = true;
-                    }
-                }
+    input.forEach(line => {
+        let splittedLine = line.split(' ');
+        if (splittedLine.includes('addMovie')) {
+            let movieName = line.split('addMovie ')[1];
+            array.push({ name: movieName });
+        }
+        else if (splittedLine.includes('directedBy')) {
+            let [movieNameDirected, movieDirector] = line.split(' directedBy ');
+            let findMovie = array.find(obj => obj.name === movieNameDirected);
+            if (findMovie) {
+                findMovie.director = movieDirector;
             }
         }
-        if (object.name !== '' && isDate === true && isDirected === true) {
-            let json = JSON.stringify(object);
+        else if (splittedLine.includes('onDate')) {
+            let [movieNameDated, movieDate] = line.split(' onDate ');
+            let findMovie2 = array.find(obj => obj.name === movieNameDated);
+            if (findMovie2) {
+                findMovie2.date = movieDate;
+            }
+        }
+    })
+    array.forEach(obj => {
+        if (obj.name && obj.director && obj.date) {
+            let json = JSON.stringify(obj);
             console.log(json);
         }
-    }
-
+    })
 }
 solve(['addMovie Fast and Furious',
     'addMovie Godfather',
     'Inception directedBy Christopher Nolan',
-    'Godfather directedBy Francis Ford  Coppola',
+    'Godfather directedBy Francis Ford Coppola',
     'Godfather onDate 29.07.2018',
     'Fast and Furious onDate 30.07.2018',
     'Batman onDate 01.08.2018',
-    'Fast and Furious directedBy Rob Cohen'])
+    'Fast and Furious directedBy Rob Cohen',])

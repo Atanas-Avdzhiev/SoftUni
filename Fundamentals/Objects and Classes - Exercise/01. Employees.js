@@ -1,14 +1,15 @@
 function solve(array) {
 
-    for (let name of array) {
-        let currentLength = name.length;
-        let object = {
+    let object = {
 
-        }
-        object.employeeName = name;
-        object.personalNum = currentLength;
-        console.log(`Name: ${object.employeeName} -- Personal Number: ${object.personalNum}`);
     }
 
+    for (let name of array) {
+        object[name] = name.length;
+    }
+
+    for (const key in object) {
+        console.log(`Name: ${key} -- Personal Number: ${object[key]}`);
+    }
 }
 solve(['Silas Butler', 'Adnaan Buckley', 'Juan Peterson', 'Brendan Villarreal'])

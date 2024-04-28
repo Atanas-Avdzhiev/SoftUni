@@ -3,7 +3,7 @@ function solve(array) {
     let storeArray = [];
     array.forEach(line => {
         let object = JSON.parse(line);
-        let keys = Object.keys(object);
+        let key = Object.keys(object);
         let isKeyExist = false;
 
         if (storeArray.length === 0) {
@@ -11,9 +11,9 @@ function solve(array) {
         }
         else {
             for (let obj of storeArray) {
-                isKeyExist = obj.hasOwnProperty(keys[0]);
+                isKeyExist = obj.hasOwnProperty(key);
                 if (isKeyExist) {
-                    obj[keys[0]] = (object[keys[0]]);
+                    obj[key] = object[key];
                     break;
                 }
             }
@@ -38,5 +38,4 @@ solve(['{"Coffee":"A hot drink made from the roasted and ground seeds (coffee be
     '{"Bus":"A large motor vehicle carrying passengers by road, typically one serving the public on a fixed route and for a fare."}',
     '{"Boiler":"A fuel-burning apparatus or container for heating water."}',
     '{"Tape":"A narrow strip of material, typically used to hold or fasten something."}',
-    '{"Microphone":"An instrument for converting sound waves into electrical energy variations which may then be amplified, transmitted, or recorded."}',
-    '{"Coffee":"AAA hot drink made from the roasted and ground seeds (coffee beans) of a tropical shrub."}'])
+    '{"Microphone":"An instrument for converting sound waves into electrical energy variations which may then be amplified, transmitted, or recorded."}',])
