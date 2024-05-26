@@ -6,14 +6,12 @@ function plantDiscovery(input) {
     // collect initial plants
     for (let i = 0; i < plantCount; i++) {
         // collect plant data
-        let line = input.shift(); // "Arnoldii<->4"
-        let lineArr = line.split('<->'); // ["Arnoldii", "4"]
-        let name = lineArr[0];
-        let rarity = Number(lineArr[1]);
+        let line = input.shift();
+        let [name, rarity] = line.split('<->');
 
         // store plant data
         plants[name] = {
-            rarity: rarity,
+            rarity: Number(rarity),
             ratings: [],
         };
     }
@@ -22,13 +20,10 @@ function plantDiscovery(input) {
     let line = input.shift(); // 'Rate: Woodii - 10'
     while (line != 'Exhibition') {
         // extract data from line
-        let commandArr = line.split(': ');  // ['Rate', 'Woodii - 10']
-        let command = commandArr[0];
-        let args = commandArr[1].split(' - '); // ['Woodii', '10']
-        let name = args[0];
-        let argument = args[1];
-
+        let [command, args] = line.split(': ');  
+        let [name, argument] = args.split(' - ');
         let plant = plants[name];
+        
         if (plant) {
             switch (command) {
                 case 'Rate':
@@ -54,23 +49,23 @@ function plantDiscovery(input) {
     console.log('Plants for the exhibition:');
     for (const name in plants) {
         // calculate average rating
-        let sum = 0;
-        let ratingsCount = plants[name].ratings.length;
-
-        for (const rating of plants[name].ratings) {
-            sum += rating;
-        }
-
-        let averageRating = sum / ratingsCount;
-        if (!averageRating) {
-            averageRating = 0;
-        }
-
+        let averageRating = average(plants[name].ratings);
+        
         // print plant information
         console.log(`- ${name}; Rarity: ${plants[name].rarity}; Rating: ${averageRating.toFixed(2)}`);
     }
-}
 
+    function average(numbers) {
+        if (numbers.length === 0) {
+            return 0;
+        }
+
+        let sum = numbers.reduce((s, num) => s + num, 0);
+        let result = sum / numbers.length;
+       
+        return result;
+    }
+}
 plantDiscovery(["3",
     "Arnoldii<->4",
     "Woodii<->7",

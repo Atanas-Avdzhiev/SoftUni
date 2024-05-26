@@ -51,7 +51,6 @@ function solve(input) {
         i++;
         command = input[i];
     }
-
     console.log(`Plants for the exhibition:`);
 
     for (const plant in plants) {
@@ -74,14 +73,24 @@ function solve(input) {
         console.log(`- ${plant[0]}; Rarity: ${plant[1].rarity}; Rating: ${plant[1].rating.toFixed(2)}`);
     }
 }
-solve(["2",
+solve(["3",
 
-    "Candelabra<->10",
+    "Arnoldii<->4",
 
-    "Oahu<->10",
+    "Woodii<->7",
 
-    "Rate: Oahu - 7",
+    "Welwitschia<->2",
 
-    "Rate: Candelabra - 6",
+    "Rate: Woodii - 10",
+
+    "Rate: Welwitschia - 7",
+
+    "Rate: Arnoldii - 3",
+
+    "Rate: Woodii - 5",
+
+    "Update: Woodii - 5",
+
+    "Reset: Arnoldii",
 
     "Exhibition"])
