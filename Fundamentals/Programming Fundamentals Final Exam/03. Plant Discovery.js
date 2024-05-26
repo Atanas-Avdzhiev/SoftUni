@@ -5,7 +5,10 @@ function solve(input) {
 
     for (let i = 0; i < numberOfPlants; i++) {
         let [plantName, plantRarity] = input[i].split('<->');
-        plants[plantName] = [plantRarity];
+        plants[plantName] = {
+            rarity: Number(plantRarity),
+            rating: [],
+        }
     }
     input.splice(0, numberOfPlants);
     let i = 0;
@@ -20,16 +23,16 @@ function solve(input) {
             case 'Rate:':
                 let rating = Number(arrayCommand[3]);
                 if (plants.hasOwnProperty(plantName)) {
-                    plants[plantName].push(rating);
+                    plants[plantName].rating.push(rating);
                 }
                 else {
                     console.log('error');
                 }
                 break;
             case 'Update:':
-                let newRarity = arrayCommand[3];
+                let newRarity = Number(arrayCommand[3]);
                 if (plants.hasOwnProperty(plantName)) {
-                    plants[plantName][0] = newRarity;
+                    plants[plantName].rarity = newRarity;
                 }
                 else {
                     console.log('error');
@@ -37,8 +40,7 @@ function solve(input) {
                 break;
             case 'Reset:':
                 if (plants.hasOwnProperty(plantName)) {
-                    let currentRarity = plants[plantName][0];
-                    plants[plantName] = [currentRarity];
+                    plants[plantName].rating = [];
                 }
                 else {
                     console.log('error');
@@ -49,40 +51,37 @@ function solve(input) {
         i++;
         command = input[i];
     }
-    console.log('Plants for the exhibition:');
 
-    for (const key in plants) {
-        let rarity = Number(plants[key].shift());
+    console.log(`Plants for the exhibition:`);
+
+    for (const plant in plants) {
+        let numberOfRatings = plants[plant].rating.length;
         let sum = 0;
-        for (const rating of plants[key]) {
+        for (const rating of plants[plant].rating) {
             sum += rating;
         }
-        let rating = sum / plants[key].length;
-        if (plants[key].length === 0) {
-            rating = 0;
+        let averageRating = sum / numberOfRatings;
+        if (!averageRating) {
+            averageRating = 0;
         }
-        console.log(`- ${key}; Rarity: ${rarity}; Rating: ${rating.toFixed(2)}`);
+        plants[plant].rating = averageRating;
     }
 
+    let plantsEntries = Object.entries(plants);
+    //plantsEntries.sort((a, b) => b[1].rarity - a[1].rarity || b[1].rating - a[1].rating);
+
+    for (const plant of plantsEntries) {
+        console.log(`- ${plant[0]}; Rarity: ${plant[1].rarity}; Rating: ${plant[1].rating.toFixed(2)}`);
+    }
 }
-solve(["3",
+solve(["2",
 
-    "Arnoldii<->4",
+    "Candelabra<->10",
 
-    "Woodii<->7",
+    "Oahu<->10",
 
-    "Welwitschia<->2",
+    "Rate: Oahu - 7",
 
-    "Rate: Woodii - 10",
-
-    "Rate: Welwitschia - 7",
-
-    "Rate: Arnoldii - 3",
-
-    "Rate: Woodii - 5",
-
-    "Update: Woodii - 5",
-
-    "Reset: Arnoldii",
+    "Rate: Candelabra - 6",
 
     "Exhibition"])
