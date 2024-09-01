@@ -1,0 +1,51 @@
+.nav-container {
+    background-color: #F5F5F5;
+    max-width: 300px;
+    border: 1px solid darkgray;
+}
+
+.nav-container ul {
+    list-style-type: none;
+}
+
+.nav-container .nav-link {
+    color: #C83022;
+    text-decoration: none;
+    margin: 5px 0;
+    display: inline-block;
+}
+
+.nav-container .nav-link i {
+    margin-right: 6px;
+}
+
+.buttons-container .btn {
+    padding: 6px 12px;
+    color: white;
+    border-radius: 2px;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.buttons-container .btn i {
+    color: white;
+}
+
+.buttons-container {
+    margin-top: 40px;
+}
+
+.checkout {
+    background-color: #83A94C;
+    border-color: #799A49;
+}
+
+.info {
+    background-color: #008ED0;
+    border-color: #0984BE;
+}
+
+.delete {
+    background-color: #CC4036;
+    border-color: #BB453C;
+}

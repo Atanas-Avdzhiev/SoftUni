@@ -1,0 +1,28 @@
+button:hover {
+    cursor: pointer;
+}
+
+button {
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    display: block;
+    margin: 20px 0;
+}
+
+.click {
+    background-color: #008000;
+}
+
+.mail {
+    background-color: #FFA500;
+}
+
+.click i {
+    margin-right: 5px;
+}
+
+.mail i {
+    margin-right: 5px;
+}

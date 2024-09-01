@@ -1,0 +1,10 @@
+section {
+    background-color: #DDDDDD;
+    max-width: 350px;
+    padding: 12px;
+    border: solid 1px black;
+}
+
+h1 {
+    text-align: center;
+}
