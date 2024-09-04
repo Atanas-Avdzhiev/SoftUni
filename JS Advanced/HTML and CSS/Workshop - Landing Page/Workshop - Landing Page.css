@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+body,
+ul {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+header {
+    box-shadow: 0px 3px 8px -4px #ccc;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.logo-container img {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px;
+}
+
+.login-nav-item * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.login-btn {
+    margin-left: 15px;
+}
+
+.nav-item {
+    margin: 0 60px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #565656;
+}
+
+.nav-link:hover {
+    color: #FF9100;
+    cursor: pointer;
+}
+
+.btn {
+    background: #FF9100;
+    color: white;
+    border-radius: 20px;
+    padding: 10px 20px;
+    border: none;
+    text-transform: uppercase;
+    box-shadow: 0px 3px 8px -4px #ccc;
+}
+
+.intro {
+    background-color: #FF9100;
+    color: white;
+    text-align: center;
+    padding: 60px 120px 90px 120px;
+}
+
+.intro h1 {
+    font-size: 40px;
+}
+
+.filters {
+    background-color: #F8F8F8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+}
+
+.filters-title {
+    font-size: 24px;
+    color: #565656;
+}
+
+.filters label * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.filters label input {
+    border: 1px solid #FF9100;
+    border-radius: 5px;
+    padding: 12px;
+    background-color: transparent;
+    margin-left: 10px;
+}
+
+.filters label {
+    position: relative;
+}
+
+.question-mark-icon {
+    position: absolute;
+    top: 8px;
+    right: -30px;
+}
+
+.filters label::after {
+    content: "";
+    display: block;
+    background-image: url(drop\ down\ arrow.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 15px;
+    top: 11px;
+}
