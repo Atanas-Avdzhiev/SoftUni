@@ -4,15 +4,21 @@ body,
 ul {
     margin: 0;
     padding: 0;
+}
+
+body * {
     font-family: 'Lato', sans-serif;
 }
 
 header {
-    box-shadow: 0px 3px 8px -4px #ccc;
     padding: 20px 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.page-header {
+    box-shadow: 0px 3px 8px -4px #ccc;
 }
 
 header nav ul {
@@ -58,6 +64,7 @@ header nav ul {
     border: none;
     text-transform: uppercase;
     box-shadow: 0px 3px 8px -4px #ccc;
+    font-weight: bold;
 }
 
 .intro {
@@ -118,4 +125,223 @@ header nav ul {
     position: absolute;
     right: 15px;
     top: 11px;
+}
+
+.trainings {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px auto;
+}
+
+.training {
+    margin: 20px;
+    box-shadow: 0px 2px 4px 0px #00000024;
+    border-radius: 12px;
+}
+
+.training header {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.training:nth-child(1) header,
+.training:nth-child(3) header {
+    background: #44A9F8;
+    color: white;
+}
+
+.training:nth-child(2) header {
+    background: #41BEAD;
+    color: white;
+}
+
+.training header {
+    position: relative;
+}
+
+.training header h3 {
+    text-align: center;
+    padding: 60px 40px;
+    font-size: 20px;
+}
+
+.training header span {
+    background: #676781;
+    border-radius: 6px;
+    text-transform: uppercase;
+    color: white;
+    padding: 8px 12px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 12px;
+}
+
+.training:nth-child(3) header span {
+    background-color: #9A5DC6;
+}
+
+.training footer {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.training-content {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.training-content-info {
+    display: flex;
+    align-items: center;
+    margin: 0 8px;
+}
+
+.training-content::after {
+    content: '';
+    display: block;
+    width: 100%;
+    margin: 10px auto;
+    height: 1px;
+    background: rgb(214, 209, 209);
+}
+
+.training footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.training-price {
+    font-size: 24px;
+    color: #FC4C50
+}
+
+.training-cta .btn {
+    font-weight: bold;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.dots-line-container {
+    padding: 0 40px;
+}
+
+.programs-content {
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+}
+
+.programs {
+    margin: 40px auto;
+}
+
+.program {
+    border-radius: 12px;
+    margin: 12px;
+}
+
+.program.software {
+    border: 3px solid #44A9F8;
+    background-color: #E3F3FD;
+}
+
+.program.software .program-header h4 {
+    color: #44A9F8;
+    margin-left: 10px;
+}
+
+.program.hardware .program-header h4 {
+    color: #00AF9B;
+    margin-left: 10px;
+}
+
+.program.hardware {
+    border: 3px solid #00AF9B;
+    background-color: #DFF4F1;
+}
+
+.program-header {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.program-header h3 {
+    padding: 0px 30px;
+    font-size: 21px;
+}
+
+.program-header h4 {
+    font-size: 30px;
+    margin: 0;
+}
+
+.programs header {
+    display: block;
+    text-align: center;
+}
+
+.programs header h2 {
+    color: #41BEAD;
+    font-size: 28px;
+}
+
+.program-content {
+    text-align: center;
+    padding: 0 20px 20px 20px;
+}
+
+.page-footer {
+    background-color: #565656;
+    color: white;
+    position: relative;
+    padding-left: 10%;
+    padding-right: 60px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-top: 260px;
+    border-top: 10px solid #919191;
+    display: flex;
+    align-items: top;
+    justify-content: space-between;
+}
+
+.page-footer ul {
+    list-style-type: none;
+}
+
+.page-footer a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer-person-container img {
+    position: absolute;
+    bottom: 0;
+    left: 40px;
+}
+
+.page-footer h5 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.footer-menu li {
+    margin: 15px 0px;
+}
+
+.social-media ul {
+    display: flex;
+}
+
+.social-media ul li {
+    margin: 0px 10px;
 }
