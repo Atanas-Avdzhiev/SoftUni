@@ -3,7 +3,7 @@ function addItem() {
     const valueInputEl = document.querySelector('#newItemValue');
     const optionEl = document.createElement('option');
     optionEl.textContent = textInputEl.value;
-    optionEl.value = valueInputEl.value;
+    optionEl.setAttribute('value', valueInputEl.value);
     const selectEl = document.querySelector('#menu');
     selectEl.append(optionEl);
     textInputEl.value = '';
