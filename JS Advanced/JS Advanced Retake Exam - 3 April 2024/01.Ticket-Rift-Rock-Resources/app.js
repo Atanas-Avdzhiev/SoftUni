@@ -85,7 +85,6 @@ function solve() {
         })
 
         nextButton.addEventListener('click', () => {
-            //div.remove();
             li.remove();
             const buyButton = document.createElement('button');
             buyButton.setAttribute('class', 'buy-btn');

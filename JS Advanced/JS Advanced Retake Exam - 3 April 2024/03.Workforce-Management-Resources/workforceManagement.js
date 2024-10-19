@@ -37,4 +37,3 @@
     return updatedStaff.join(", ");
   }
 };
-//console.log((workforceManagement.computeWages(NaN)))

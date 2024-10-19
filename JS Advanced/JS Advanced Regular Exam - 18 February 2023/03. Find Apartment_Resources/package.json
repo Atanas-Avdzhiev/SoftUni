@@ -1,0 +1,17 @@
+{
+  "name": "03.-find-apartment_resources",
+  "version": "1.0.0",
+  "description": "",
+  "main": "findApartment.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^5.1.1",
+    "mocha": "^10.7.3"
+  }
+}
