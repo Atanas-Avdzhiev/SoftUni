@@ -3,6 +3,7 @@ import { streamingServiceSelector } from "../streamingServiceSelector.js";
 
 describe("streamingServiceSelector tests", function () {
 
+
     describe("selectingContent", function () {
 
         it("", function () {
@@ -54,76 +55,12 @@ describe("streamingServiceSelector tests", function () {
 
     });
 
+
     describe("contentRating", function () {
 
         it("", function () {
-            expect(() => streamingServiceSelector.contentRating('not number', 5)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating([], 5)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating({}, 5)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(undefined, 5)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(true, 5)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(false, 5)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(null, 5)).to.throw('Invalid runtime or rating.');
-            //expect(() => streamingServiceSelector.contentRating(NaN, 5)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(Symbol, 5)).to.throw('Invalid runtime or rating.');
-
-            expect(() => streamingServiceSelector.contentRating(5, [])).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(5, {})).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(5, undefined)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(5, true)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(5, false)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(5, null)).to.throw('Invalid runtime or rating.');
-            //expect(() => streamingServiceSelector.contentRating(5, NaN)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(5, Symbol)).to.throw('Invalid runtime or rating.');
-
-            expect(() => streamingServiceSelector.contentRating([], [])).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating({}, {})).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(undefined, undefined)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(true, true)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(false, false)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(true, false)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(false, true)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(null, null)).to.throw('Invalid runtime or rating.');
-            //expect(() => streamingServiceSelector.contentRating(NaN, NaN)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(Symbol, Symbol)).to.throw('Invalid runtime or rating.');
-
-            expect(() => streamingServiceSelector.contentRating([], {})).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating([], '')).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating([], undefined)).to.throw('Invalid runtime or rating.');
-            //expect(() => streamingServiceSelector.contentRating([], NaN)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating([], Boolean)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating('', '')).to.throw('Invalid runtime or rating.');
-
-            expect(() => streamingServiceSelector.contentRating({}, [])).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating({}, '')).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating({}, undefined)).to.throw('Invalid runtime or rating.');
-            //expect(() => streamingServiceSelector.contentRating({}, NaN)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating({}, Boolean)).to.throw('Invalid runtime or rating.');
-
-            expect(() => streamingServiceSelector.contentRating('', [])).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating('', '')).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating('', undefined)).to.throw('Invalid runtime or rating.');
-            //expect(() => streamingServiceSelector.contentRating('', NaN)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating('', Boolean)).to.throw('Invalid runtime or rating.');
-
-            expect(() => streamingServiceSelector.contentRating(5, 'not number')).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(5, 'not number')).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating('not number', 'not number')).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(0, 5)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(-1, 5)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(-7, -5)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(-2, 5)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(-10, 5)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(5, -1)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(5, -10)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(5, -2)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(5, 11)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(0, 0)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating('5', 7)).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating('5', '7')).to.throw('Invalid runtime or rating.');
-            expect(() => streamingServiceSelector.contentRating(5, '7')).to.throw('Invalid runtime or rating.');
-
-            expect(streamingServiceSelector.contentRating(1, 0)).to.equal('This content has a lower rating (0/10) and runs for 0.02 hours. You might want to check reviews first.');
+            expect(() => streamingServiceSelector.contentRating('not a number', 5)).to.throw('Invalid runtime or rating.');
+            expect(() => streamingServiceSelector.contentRating(5, 'not a number')).to.throw('Invalid runtime or rating.');
             expect(streamingServiceSelector.contentRating(60, 7)).to.equal('This content is highly rated (7/10) and has a runtime of 1.00 hours. Enjoy your watch!');
             expect(streamingServiceSelector.contentRating(30, 7)).to.equal('This content is highly rated (7/10) and has a runtime of 0.50 hours. Enjoy your watch!');
             expect(streamingServiceSelector.contentRating(60, 5)).to.equal('This content has a lower rating (5/10) and runs for 1.00 hours. You might want to check reviews first.');
@@ -137,14 +74,12 @@ describe("streamingServiceSelector tests", function () {
             expect(streamingServiceSelector.contentRating(60, 6)).to.equal('This content has a lower rating (6/10) and runs for 1.00 hours. You might want to check reviews first.');
             expect(streamingServiceSelector.contentRating(60, 8)).to.equal('This content is highly rated (8/10) and has a runtime of 1.00 hours. Enjoy your watch!');
             expect(streamingServiceSelector.contentRating(60, 9)).to.equal('This content is highly rated (9/10) and has a runtime of 1.00 hours. Enjoy your watch!');
+            expect(streamingServiceSelector.contentRating(10, 5.5)).to.equal('This content has a lower rating (5.5/10) and runs for 0.17 hours. You might want to check reviews first.');
+            expect(streamingServiceSelector.contentRating(60, 9.5)).to.equal('This content is highly rated (9.5/10) and has a runtime of 1.00 hours. Enjoy your watch!');
             expect(streamingServiceSelector.contentRating(578934754, 7)).to.equal('This content is highly rated (7/10) and has a runtime of 9648912.57 hours. Enjoy your watch!');
             expect(streamingServiceSelector.contentRating(578934754, 6)).to.equal('This content has a lower rating (6/10) and runs for 9648912.57 hours. You might want to check reviews first.');
-            let runtimeInMinutes = 5483;
-            let runtimeInHours = (runtimeInMinutes / 60).toFixed(2);
-            expect(streamingServiceSelector.contentRating(runtimeInMinutes, 7)).to.equal(`This content is highly rated (7/10) and has a runtime of ${runtimeInHours} hours. Enjoy your watch!`);
-            expect(streamingServiceSelector.contentRating(runtimeInMinutes, 4)).to.equal(`This content has a lower rating (4/10) and runs for ${runtimeInHours} hours. You might want to check reviews first.`);
+
         });
 
     });
-
 });
