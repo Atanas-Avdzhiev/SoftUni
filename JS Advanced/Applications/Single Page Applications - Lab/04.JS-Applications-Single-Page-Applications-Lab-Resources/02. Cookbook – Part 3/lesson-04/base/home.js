@@ -53,7 +53,7 @@ export function loadRecipes() {
                         const editButton = document.createElement('button');
                         editButton.textContent = 'Edit';
 
-                        editButton.addEventListener('click', (e) => editRecipe(data._id, e, data));
+                        editButton.addEventListener('click', (e) => editRecipe(data._id, e));
 
                         const deleteButton = document.createElement('button');
                         deleteButton.textContent = 'Delete';
@@ -124,9 +124,13 @@ function loadSelectedRecipe(data) {
     return article;
 }
 
-function editRecipe(id, e, currentData) {
+async function editRecipe(id, e) {
     const details = e.currentTarget.parentElement;
     e.currentTarget.parentElement.style.display = 'none';
+
+    const currentRecipeDetailsURL = `http://localhost:3030/data/recipes/${id}`;
+    const response = await fetch(currentRecipeDetailsURL);
+    const data = await response.json();
 
     const createArticle = document.querySelector('#create');
     const createArticleCopy = createArticle.cloneNode(true);
@@ -142,16 +146,16 @@ function editRecipe(id, e, currentData) {
     main.appendChild(createArticleCopy);
 
     const nameInput = createArticleCopy.querySelector('input[name="name"]');
-    nameInput.value = currentData.name;
+    nameInput.value = data.name;
 
     const imgInput = createArticleCopy.querySelector('input[name="img"]');
-    imgInput.value = currentData.img;
+    imgInput.value = data.img;
 
     const ingredientsInput = createArticleCopy.querySelector('textarea[name="ingredients"]');
-    ingredientsInput.value = currentData.ingredients.join('\n');
+    ingredientsInput.value = data.ingredients.join('\n');
 
     const stepsInput = createArticleCopy.querySelector('textarea[name="steps"]');
-    stepsInput.value = currentData.steps.join('\n');
+    stepsInput.value = data.steps.join('\n');
 
     updateRecipe.addEventListener('click', async (e) => {
         e.preventDefault();
@@ -179,6 +183,7 @@ function editRecipe(id, e, currentData) {
             .then(res => res.json())
             .then(data => {
                 createArticleCopy.remove();
+
                 details.style.display = 'block';
                 const newH2 = details.querySelector('h2');
                 newH2.textContent = data.name;
@@ -190,6 +195,7 @@ function editRecipe(id, e, currentData) {
                 newUl.innerHTML = '';
 
                 data.ingredients.forEach(ingredient => {
+                    if (ingredient === '') return;
                     const li = document.createElement('li');
                     li.textContent = ingredient;
                     newUl.appendChild(li);
@@ -202,6 +208,7 @@ function editRecipe(id, e, currentData) {
                 divDescription.appendChild(newH3);
 
                 data.steps.forEach(step => {
+                    if (step === '') return;
                     const p = document.createElement('p');
                     p.textContent = step;
                     divDescription.appendChild(p);
