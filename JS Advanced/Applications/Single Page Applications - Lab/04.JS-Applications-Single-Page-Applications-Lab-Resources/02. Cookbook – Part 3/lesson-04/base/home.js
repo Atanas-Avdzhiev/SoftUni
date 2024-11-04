@@ -39,7 +39,7 @@ export function loadRecipes() {
 
                 article.addEventListener('click', async (e) => {
 
-                    const currentRecipeDetailsURL = `http://localhost:3030/data/recipes//${recipe._id}`;
+                    const currentRecipeDetailsURL = `http://localhost:3030/data/recipes/${recipe._id}`;
                     const response = await fetch(currentRecipeDetailsURL);
                     const data = await response.json();
 
@@ -47,6 +47,22 @@ export function loadRecipes() {
 
                     articleRecipes.innerHTML = '';
                     articleRecipes.appendChild(articleRecipe);
+
+                    const ownerId = localStorage.getItem('id');
+                    if (data._ownerId === ownerId) {
+                        const editButton = document.createElement('button');
+                        editButton.textContent = 'Edit';
+
+                        editButton.addEventListener('click', (e) => editRecipe(data._id, e, data));
+
+                        const deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Delete';
+
+                        deleteButton.addEventListener('click', (e) => deleteRecipe(data._id, e));
+
+                        articleRecipes.appendChild(editButton);
+                        articleRecipes.appendChild(deleteButton);
+                    }
                 });
 
                 articleRecipes.appendChild(article);
@@ -108,43 +124,115 @@ function loadSelectedRecipe(data) {
     return article;
 }
 
-//optionals:
+function editRecipe(id, e, currentData) {
+    const details = e.currentTarget.parentElement;
+    e.currentTarget.parentElement.style.display = 'none';
 
-// // optional back button from myself
-// const backButton = document.createElement('button');
-// backButton.textContent = 'Back';
+    const createArticle = document.querySelector('#create');
+    const createArticleCopy = createArticle.cloneNode(true);
+    createArticleCopy.style.display = 'block';
 
-// backButton.addEventListener('click', () => {
-//     main.innerHTML = '';
-//     //loadRecipes(); // another way to go back to main page, but probably not a better one
-//     location.href = '/'
-// })
+    const h2 = createArticleCopy.querySelector('h2');
+    h2.textContent = 'Edit Recipe';
 
-// main.appendChild(backButton);
+    const updateRecipe = createArticleCopy.querySelector('input[type="submit"]');
+    updateRecipe.value = 'Update Recipe';
 
-// //optional delete button from myself
-// //note you can delete recipe only if you are the creator of the recipe
-// const deleteButton = document.createElement('button');
-// deleteButton.textContent = 'Delete this recipe';
+    const main = document.querySelector('main');
+    main.appendChild(createArticleCopy);
 
-// deleteButton.addEventListener('click', () => {
-//     const deleteURL = `http://localhost:3030/data/recipes/${recipe._id}`;
-//     const accessToken = localStorage.getItem('accessToken');
+    const nameInput = createArticleCopy.querySelector('input[name="name"]');
+    nameInput.value = currentData.name;
 
-//     fetch(deleteURL, {
-//         method: 'DELETE',
-//         headers: {
-//             'X-Authorization': accessToken
-//         }
-//     })
-//         .then(res => res.json())
-//         .then(data => {
-//             location.href = '/';
-//         })
-//         .catch(err => alert(err.message));
-// })
-// main.appendChild(deleteButton);
-// const pDelete = document.createElement('p');
-// pDelete.textContent = 'NOTE: You can delete this recipe only if you are the creator of the recipe!';
-// pDelete.style.color = 'white';
-// main.appendChild(pDelete);
+    const imgInput = createArticleCopy.querySelector('input[name="img"]');
+    imgInput.value = currentData.img;
+
+    const ingredientsInput = createArticleCopy.querySelector('textarea[name="ingredients"]');
+    ingredientsInput.value = currentData.ingredients.join('\n');
+
+    const stepsInput = createArticleCopy.querySelector('textarea[name="steps"]');
+    stepsInput.value = currentData.steps.join('\n');
+
+    updateRecipe.addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        const editURL = `http://localhost:3030/data/recipes/${id}`;
+        const accessToken = localStorage.getItem('accessToken');
+
+        const ingredientsArray = ingredientsInput.value.split('\n');
+        const stepsArray = stepsInput.value.split('\n');
+
+        fetch(editURL, {
+            method: 'PUT',
+            body: JSON.stringify({
+                name: nameInput.value,
+                img: imgInput.value,
+                ingredients: ingredientsArray,
+                steps: stepsArray
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Authorization': accessToken
+            }
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                createArticleCopy.remove();
+                details.style.display = 'block';
+                const newH2 = details.querySelector('h2');
+                newH2.textContent = data.name;
+
+                const newImg = details.querySelector('img');
+                newImg.src = data.img;
+
+                const newUl = details.querySelector('div[class=ingredients] ul');
+                newUl.innerHTML = '';
+
+                data.ingredients.forEach(ingredient => {
+                    const li = document.createElement('li');
+                    li.textContent = ingredient;
+                    newUl.appendChild(li);
+                })
+
+                const divDescription = details.querySelector('div[class=description]');
+                divDescription.innerHTML = '';
+                const newH3 = document.createElement('h3');
+                newH3.textContent = 'Preparation:';
+                divDescription.appendChild(newH3);
+
+                data.steps.forEach(step => {
+                    const p = document.createElement('p');
+                    p.textContent = step;
+                    divDescription.appendChild(p);
+                })
+                //location.href = '/';
+            })
+            .catch(err => alert(err.message));
+    })
+
+}
+
+function deleteRecipe(id, e) {
+
+    const userConfirmed = confirm("Are you sure you want to delete this recipe?");
+
+    if (!userConfirmed) {
+        return;
+    }
+
+    const deleteURL = `http://localhost:3030/data/recipes/${id}`;
+    const accessToken = localStorage.getItem('accessToken');
+
+    fetch(deleteURL, {
+        method: 'DELETE',
+        headers: {
+            'X-Authorization': accessToken
+        }
+    })
+        .then(res => res.json())
+        .then(data => {
+            location.href = '/';
+        })
+        .catch(err => alert(err.message));
+}

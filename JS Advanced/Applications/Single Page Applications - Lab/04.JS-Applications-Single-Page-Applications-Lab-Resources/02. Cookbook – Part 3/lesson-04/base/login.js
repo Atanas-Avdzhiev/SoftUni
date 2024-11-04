@@ -31,8 +31,10 @@ export function login() {
                 if (data.code >= 400) {
                     return alert(data.message);
                 }
+
                 localStorage.setItem('accessToken', data.accessToken);
                 localStorage.setItem('email', data.email);
+                localStorage.setItem('id', data._id);
                 location.href = '/';
             })
             .catch(err => alert(err.message));

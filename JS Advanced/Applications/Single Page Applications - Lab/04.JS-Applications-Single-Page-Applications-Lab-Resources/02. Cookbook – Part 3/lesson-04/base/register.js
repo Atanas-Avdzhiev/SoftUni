@@ -1,12 +1,12 @@
 export function register() {
 
     const siteSections = document.querySelectorAll('.site-section');
-        siteSections.forEach(section => {
-            section.style.display = 'none';
-        })
-    
-        const register = document.querySelector('#register');
-        register.style.display = 'block';
+    siteSections.forEach(section => {
+        section.style.display = 'none';
+    })
+
+    const register = document.querySelector('#register');
+    register.style.display = 'block';
 
     const registerForm = document.querySelector('#register form');
     const registerURL = `http://localhost:3030/users/register`;
@@ -28,9 +28,10 @@ export function register() {
         })
             .then(res => res.json())
             .then(data => {
+
                 localStorage.setItem('accessToken', data.accessToken);
                 localStorage.setItem('email', data.email);
-                console.log('test')
+                localStorage.setItem('id', data._id);
                 location.href = '/';
             })
             .catch(err => alert(err.message));

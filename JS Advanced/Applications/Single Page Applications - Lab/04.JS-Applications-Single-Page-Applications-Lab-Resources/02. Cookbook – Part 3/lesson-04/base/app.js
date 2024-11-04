@@ -13,7 +13,7 @@ function initNavigation() {
         }
         e.preventDefault();
         const url = new URL(e.target.href)
-        console.log(url.pathname)
+
         if (url.pathname === '/recipes') {
             loadRecipes();
         }
