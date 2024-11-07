@@ -2,10 +2,10 @@ import { home, topNavigation } from "./home.js";
 
 export async function showDetails(movieID) {
     const logged = localStorage.getItem('logged');
-    if (!logged) {
-        alert('Only logged-in users can view details about movies.')
-        return;
-    }
+    // if (!logged) {
+    //     alert('Only logged-in users can view details about movies.')
+    //     return;
+    // }
     const allViewSections = document.querySelectorAll('.view-section');
 
     allViewSections.forEach(section => {
