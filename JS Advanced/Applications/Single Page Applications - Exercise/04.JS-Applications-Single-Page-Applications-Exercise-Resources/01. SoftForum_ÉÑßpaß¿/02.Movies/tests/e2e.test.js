@@ -5,7 +5,7 @@ const host = 'http://localhost:3000'; // Application host (NOT service host - th
 
 const interval = 600;
 const DEBUG = false;
-const slowMo = 10000;
+const slowMo = 500;
 
 const mockData = {
   users: [
@@ -541,6 +541,7 @@ describe('E2E tests', function () {
       let likes = await page.$$eval('.enrolled-span', (t) =>
         t.map((s) => s.textContent)
       );
+      
       expect(likes[0]).to.contains('Liked 5');
 
       own(1);
@@ -555,6 +556,7 @@ describe('E2E tests', function () {
       likes = await page.$$eval('.enrolled-span', (t) =>
         t.map((s) => s.textContent)
       );
+      
       expect(likes[0]).to.contains('Liked 6');
     });
   });

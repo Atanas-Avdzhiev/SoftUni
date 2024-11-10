@@ -75,6 +75,9 @@ export async function showDetails(movieID) {
     if (data._ownerId === myID) {
         spanLikes.style.display = 'inline';
     }
+    if (!logged) {
+        likeButton.style.display = 'none';
+    }
     editButton.addEventListener('click', () => editDetails(movieID));
 
     likeButton.addEventListener('click', (e) => {
@@ -156,7 +159,7 @@ async function addLike(movieID, detailsSection) {
         })
         const data = await res.json();
         if (data._id) {
-            const spanLike = detailsSection.querySelector('span');
+            const spanLike = document.querySelector('.enrolled-span');
             const likesURL = `http://localhost:3030/data/likes?where=movieId%3D%22${movieID}%22&distinct=_ownerId&count`;
 
             const resLikes = await fetch(likesURL);
