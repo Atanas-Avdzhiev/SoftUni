@@ -1,9 +1,8 @@
 import { html, render } from '../node_modules/lit-html/lit-html.js';
 
-const body = document.querySelector('body');
+const body = document.querySelector('body .container');
 
 const template = (furnitures = []) => html`
-<div class="container">
         <div class="row space-top">
             <div class="col-md-12">
                 <h1>Welcome to Furniture System</h1>
@@ -28,7 +27,6 @@ const template = (furnitures = []) => html`
             </div>
                 `)}
         </div>      
-    </div>
 `;
 
 export async function loadAllFurniture() {

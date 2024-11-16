@@ -1,10 +1,9 @@
 import { html, render } from '../node_modules/lit-html/lit-html.js';
 import page from "../node_modules/page/page.mjs";
 
-const body = document.querySelector('body');
+const body = document.querySelector('body .container');
 
 const template = html`
-    <div class="container">
         <div class="row space-top">
             <div class="col-md-12">
                 <h1>Create New Furniture</h1>
@@ -48,7 +47,6 @@ const template = html`
                 </div>
             </div>
         </form>
-    </div>
 `;
 
 export function create() {

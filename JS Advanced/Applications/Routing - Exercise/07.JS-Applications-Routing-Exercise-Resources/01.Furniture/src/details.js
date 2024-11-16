@@ -1,10 +1,9 @@
 import { html, render } from '../node_modules/lit-html/lit-html.js';
 import page from "../node_modules/page/page.mjs";
 
-const body = document.querySelector('body');
+const body = document.querySelector('body .container');
 
 const template = (furniture, isOwner = false) => html`
-<div class="container">
         <div class="row space-top">
             <div class="col-md-12">
                 <h1>Furniture Details</h1>
@@ -33,7 +32,6 @@ const template = (furniture, isOwner = false) => html`
                 ` : ''}
             </div>
         </div>
-    </div>
 `;
 
 export async function details(ctx) {
