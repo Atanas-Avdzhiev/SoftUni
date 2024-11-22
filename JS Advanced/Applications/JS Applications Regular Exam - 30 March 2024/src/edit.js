@@ -3,31 +3,39 @@ import page from "../node_modules/page/page.mjs";
 
 const main = document.querySelector('#main-element');
 
-const template = html`
-            <section id="create">
+const template = (item) => html`
+            <section id="edit">
                 <div class="form form-item">
-                    <h2>Share Your item</h2>
-                    <form @submit=${addHandler} class="create-form">
-                        <input type="text" name="item" id="item" placeholder="Item" />
-                        <input type="text" name="imageUrl" id="item-image" placeholder="Your item Image URL" />
-                        <input type="text" name="price" id="price" placeholder="Price in Euro" />
+                    <h2>Edit Your Item</h2>
+                    <form @submit=${editHandler} class="edit-form">
+                        <input type="text" name="item" id="item" placeholder="Item" value="${item.item}"/>
+                        <input type="text" name="imageUrl" id="item-image" placeholder="Your item Image URL" value="${item.imageUrl}"/>
+                        <input type="text" name="price" id="price" placeholder="Price in Euro" value="${item.price}"/>
                         <input type="text" name="availability" id="availability"
-                            placeholder="Availability Information" />
-                        <input type="text" name="type" id="type" placeholder="Item Type" />
+                            placeholder="Availability Information" value="${item.availability}"/>
+                        <input type="text" name="type" id="type" placeholder="Item Type" value="${item.type}"/>
                         <textarea id="description" name="description" placeholder="More About The Item" rows="10"
-                            cols="50"></textarea>
-                        <button type="submit">Add</button>
+                            cols="50">${item.description}</textarea>
+                        <button type="submit">Edit</button>
                     </form>
                 </div>
             </section>
 `;
 
-export function create() {
-    render(template, main);
+export async function editDetails(ctx) {
+    const { itemId } = ctx.params;
+    const detailsURL = `http://localhost:3030/data/cyberpunk/${itemId}`;
+
+    const res = await fetch(detailsURL);
+    const data = await res.json();
+
+    render(template(data), main);
 }
 
-async function addHandler(e) {
+async function editHandler(e) {
     e.preventDefault();
+
+    const itemId = window.location.pathname.split('/')[2];
 
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
@@ -46,13 +54,13 @@ async function addHandler(e) {
         return;
     }
 
-    const registerURL = 'http://localhost:3030/data/cyberpunk';
+    const editURL = `http://localhost:3030/data/cyberpunk/${itemId}`;
 
     const userData = JSON.parse(localStorage.getItem('userData'));
     const accessToken = userData.accessToken;
 
-    const res = await fetch(registerURL, {
-        method: 'POST',
+    const res = await fetch(editURL, {
+        method: 'PUT',
         body: JSON.stringify({
             item: data.item,
             imageUrl: data.imageUrl,
@@ -68,6 +76,6 @@ async function addHandler(e) {
     })
     const serverData = await res.json();
     if (serverData._id) {
-        page.redirect('/market');
+        page.redirect(`/market/${itemId}`);
     }
 }

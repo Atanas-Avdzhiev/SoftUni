@@ -27,11 +27,18 @@ export function loginView() {
 async function loginHandler(e) {
     e.preventDefault();
 
+    const notification = document.querySelector('.notification');
+
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
     if (data.email === '' || data.password === '') {
-        window.alert("Fields cannot be empty.");
+        notification.style.display = 'block';
+        notification.querySelector('span').textContent = "Fields cannot be empty.";
+        setTimeout(() => {
+            notification.querySelector('span').textContent = 'MESSAGE';
+            notification.style.display = 'none';
+        }, 3000);
         return;
     }
 
@@ -54,6 +61,11 @@ async function loginHandler(e) {
         page.redirect('/');
     }
     else {
-        alert(serverData.message);
+        notification.style.display = 'block';
+        notification.querySelector('span').textContent = serverData.message;
+        setTimeout(() => {
+            notification.querySelector('span').textContent = 'MESSAGE';
+            notification.style.display = 'none';
+        }, 3000);
     }
 }

@@ -1,5 +1,4 @@
 import { html, render } from '../node_modules/lit-html/lit-html.js';
-import page from "../node_modules/page/page.mjs";
 
 const main = document.querySelector('#main-element');
 
@@ -21,7 +20,7 @@ const template = (items) => html `
                             </p>
                             <p class="type">Type: ${item.type}</p>
                         </div>
-                        <a class="details-btn" href="#">Uncover More</a>
+                        <a class="details-btn" href="/market/${item._id}">Uncover More</a>
                     </div>
                     `)}
                     `

@@ -29,13 +29,25 @@ async function registerHandler(e) {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
+    const notification = document.querySelector('.notification');
+
     if (data.password !== data['re-password']) {
-        window.alert("Passwords don't match");
+        notification.style.display = 'block';
+        notification.querySelector('span').textContent = "Passwords don't match"
+        setTimeout(() => {
+            notification.querySelector('span').textContent = 'MESSAGE';
+            notification.style.display = 'none';
+        }, 3000);
         return;
     }
 
     if (data.email === '' || data.password === '' || data['re-password'] === '') {
-        window.alert("Passwords don't match");
+        notification.style.display = 'block';
+        notification.querySelector('span').textContent = "Passwords don't match"
+        setTimeout(() => {
+            notification.querySelector('span').textContent = 'MESSAGE';
+            notification.style.display = 'none';
+        }, 3000);
         return;
     }
 
@@ -58,6 +70,11 @@ async function registerHandler(e) {
         page.redirect('/');
     }
     else {
-        alert(serverData.message);
+        notification.style.display = 'block';
+        notification.querySelector('span').textContent = serverData.message;
+        setTimeout(() => {
+            notification.querySelector('span').textContent = 'MESSAGE';
+            notification.style.display = 'none';
+        }, 3000);
     }
 }

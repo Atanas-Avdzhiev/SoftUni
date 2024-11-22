@@ -6,6 +6,9 @@ import { loginView } from "./src/login.js";
 import { logout } from "./src/logout.js";
 import { marketView } from "./src/marketView.js";
 import { create } from "./src/create.js";
+import { showDetails } from "./src/details.js";
+import { editDetails } from "./src/edit.js";
+import { deleteItem } from "./src/delete.js";
 
 navigationView();
 page('/', homeView);
@@ -14,5 +17,8 @@ page('/login', loginView);
 page('/logout', logout);
 page('/market', marketView);
 page('/create', create);
+page('/market/:itemId', showDetails);
+page('/market/:itemId/edit', editDetails);
+page('/market/:itemId/delete', deleteItem);
 
 page();
