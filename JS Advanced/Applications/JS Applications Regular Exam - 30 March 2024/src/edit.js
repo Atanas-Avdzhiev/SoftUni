@@ -3,11 +3,11 @@ import page from "../node_modules/page/page.mjs";
 
 const main = document.querySelector('#main-element');
 
-const template = (item) => html`
+const template = (item, formHandler) => html`
             <section id="edit">
                 <div class="form form-item">
                     <h2>Edit Your Item</h2>
-                    <form @submit=${editHandler} class="edit-form">
+                    <form @submit=${formHandler} class="edit-form">
                         <input type="text" name="item" id="item" placeholder="Item" value="${item.item}"/>
                         <input type="text" name="imageUrl" id="item-image" placeholder="Your item Image URL" value="${item.imageUrl}"/>
                         <input type="text" name="price" id="price" placeholder="Price in Euro" value="${item.price}"/>
@@ -29,13 +29,14 @@ export async function editDetails(ctx) {
     const res = await fetch(detailsURL);
     const data = await res.json();
 
-    render(template(data), main);
+    render(template(data, editHandler.bind(ctx)), main);
 }
 
 async function editHandler(e) {
     e.preventDefault();
 
-    const itemId = window.location.pathname.split('/')[2];
+    //const itemId = window.location.pathname.split('/')[2]; // another way to get the itemId instead of binding the ctx to the function when is called on line 32
+    const { itemId } = this.params;
 
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);

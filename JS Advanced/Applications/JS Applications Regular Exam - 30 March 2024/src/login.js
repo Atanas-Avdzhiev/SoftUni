@@ -1,6 +1,5 @@
 import { html, render } from '../node_modules/lit-html/lit-html.js';
 import page from "../node_modules/page/page.mjs";
-import { navigationView } from "./navigation.js";
 
 const main = document.querySelector('#main-element');
 
@@ -57,7 +56,6 @@ async function loginHandler(e) {
     const serverData = await res.json();
     if (serverData.accessToken) {
         localStorage.setItem('userData', JSON.stringify(serverData));
-        navigationView();
         page.redirect('/');
     }
     else {

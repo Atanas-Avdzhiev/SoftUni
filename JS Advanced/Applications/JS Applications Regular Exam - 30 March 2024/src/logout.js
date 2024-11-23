@@ -1,5 +1,4 @@
 import page from "../node_modules/page/page.mjs";
-import { navigationView } from "./navigation.js";
 
 export async function logout() {
     const logoutURL = 'http://localhost:3030/users/logout';
@@ -15,10 +14,10 @@ export async function logout() {
     });
     if(res.status === 204){
         localStorage.clear();
-        navigationView();
         page.redirect('/');
     }
     else{
+        localStorage.clear();
         window.alert(res.statusText);
     }
 }

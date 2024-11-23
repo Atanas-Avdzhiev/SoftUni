@@ -1,9 +1,11 @@
 import page from "../node_modules/page/page.mjs";
 
 export async function deleteItem(ctx) {
-    if (!confirm('Are you sure you want to delete this item?')) return;
-    
     const { itemId } = ctx.params;
+    if (!confirm('Are you sure you want to delete this item?')) {
+        page.redirect(`/market/${itemId}`);
+        return;
+    }
     const deleteURL = `http://localhost:3030/data/cyberpunk/${itemId}`;
 
     const userData = JSON.parse(localStorage.getItem('userData'));

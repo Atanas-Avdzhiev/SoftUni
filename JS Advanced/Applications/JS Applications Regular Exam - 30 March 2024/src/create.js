@@ -3,11 +3,11 @@ import page from "../node_modules/page/page.mjs";
 
 const main = document.querySelector('#main-element');
 
-const template = html`
+const template = (formHandler) => html`
             <section id="create">
                 <div class="form form-item">
                     <h2>Share Your item</h2>
-                    <form @submit=${addHandler} class="create-form">
+                    <form @submit=${formHandler} class="create-form">
                         <input type="text" name="item" id="item" placeholder="Item" />
                         <input type="text" name="imageUrl" id="item-image" placeholder="Your item Image URL" />
                         <input type="text" name="price" id="price" placeholder="Price in Euro" />
@@ -23,7 +23,7 @@ const template = html`
 `;
 
 export function create() {
-    render(template, main);
+    render(template(addHandler), main);
 }
 
 async function addHandler(e) {

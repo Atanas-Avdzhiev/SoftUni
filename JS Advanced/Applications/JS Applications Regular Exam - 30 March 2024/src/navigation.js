@@ -24,7 +24,8 @@ const template = (isLogged) => html`
             </nav>
 `;
 
-export function navigationView() {
+export function navigationView(ctx, next) {
     const userData = localStorage.getItem('userData');
     render(template(!!userData), header);
+    next();
 }

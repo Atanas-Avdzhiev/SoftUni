@@ -10,7 +10,8 @@ import { showDetails } from "./src/details.js";
 import { editDetails } from "./src/edit.js";
 import { deleteItem } from "./src/delete.js";
 
-navigationView();
+page(navigationView);
+
 page('/', homeView);
 page('/register', registerView);
 page('/login', loginView);
