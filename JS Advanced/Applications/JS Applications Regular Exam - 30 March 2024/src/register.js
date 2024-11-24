@@ -3,11 +3,11 @@ import page from "../node_modules/page/page.mjs";
 
 const main = document.querySelector('#main-element');
 
-const template = html`
+const template = (formHandler) => html`
             <section id="register">
                 <div class="form">
                     <h2>Register</h2>
-                    <form @submit=${registerHandler} class="register-form">
+                    <form @submit=${formHandler} class="register-form">
                         <input type="text" name="email" id="register-email" placeholder="email" />
                         <input type="password" name="password" id="register-password" placeholder="password" />
                         <input type="password" name="re-password" id="repeat-password" placeholder="repeat password" />
@@ -19,7 +19,7 @@ const template = html`
 `;
 
 export function registerView() {
-    render(template, main);
+    render(template(registerHandler), main);
 }
 
 async function registerHandler(e) {

@@ -3,11 +3,11 @@ import page from "../node_modules/page/page.mjs";
 
 const main = document.querySelector('#main-element');
 
-const template = html`
+const template = (formHandler) => html`
             <section id="login">
                 <div class="form">
                     <h2>Login</h2>
-                    <form @submit=${loginHandler} class="login-form">
+                    <form @submit=${formHandler} class="login-form">
                         <input type="text" name="email" id="email" placeholder="email" />
                         <input type="password" name="password" id="password" placeholder="password" />
                         <button type="submit">login</button>
@@ -20,7 +20,7 @@ const template = html`
 `;
 
 export function loginView() {
-    render(template, main);
+    render(template(loginHandler), main);
 }
 
 async function loginHandler(e) {
