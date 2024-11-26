@@ -56,8 +56,7 @@ async function createHandler(e) {
 
         section.innerHTML = `
         <p>just to pass the test lol</p>
-        `
-        section.id = 'shows';
+        `;
         
         main.appendChild(section);
 
