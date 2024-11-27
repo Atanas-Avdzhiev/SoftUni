@@ -51,15 +51,6 @@ async function createHandler(e) {
     const response = await create(data);
 
     if (response._id) {
-        const section = document.createElement('section');
-        section.id = 'shows';
-
-        section.innerHTML = `
-        <p>just to pass the test lol</p>
-        `;
-        
-        main.appendChild(section);
-
-        //page.redirect('/dashboard'); // because the e2e tests are broken, i commented the correct redirect and did this sh*t instead ... just to get the full points from the tests
+        page.redirect('/dashboard');
     }
 }

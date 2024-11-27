@@ -3,7 +3,7 @@ import { getAll } from '../api/api.js';
 
 const main = document.querySelector('body > #wrapper > main');   // probably need to change this
 
-const template = (arr = []) => html`
+const template = (arr) => html`
     <h2>Users Recommendations</h2>
       <section id="shows">
         ${arr.length === 0 ? html`
