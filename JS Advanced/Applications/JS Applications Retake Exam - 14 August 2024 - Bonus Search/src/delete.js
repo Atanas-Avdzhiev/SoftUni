@@ -9,12 +9,18 @@ export async function deleteView(ctx) {
         return;
     }
 
-    const response = await deleting(id);
+    try {
 
-    if (response._deletedOn) {
-        page.redirect('/dashboard');
+        const response = await deleting(id);
+
+        if (response._deletedOn) {
+            page.redirect('/dashboard');
+        }
+        else {
+            alert(response.message);
+        }
     }
-    else {
-        alert(response.message);
+    catch (err) {
+        alert(err.message);
     }
 }

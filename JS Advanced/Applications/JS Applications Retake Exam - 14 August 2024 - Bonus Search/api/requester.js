@@ -2,7 +2,7 @@ export const request = async (method, url, data) => {
 
     const userData = JSON.parse(localStorage.getItem('userData'));
 
-    let result;
+    //let result;
     let requestOptions = {};
 
     if (data) {
@@ -28,16 +28,21 @@ export const request = async (method, url, data) => {
 
         const response = await fetch(url, requestOptions);
 
+        if (!response.ok) {
+            throw await response.json();
+        }
+
+
         if (response.status === 204) {
             return response; // in case of logout because parsing to json will give error
         }
 
-        result = await response.json();
+        return await response.json();
 
     }
     catch (err) {
         alert(err.message);
     }
 
-    return result;
+    //return result;
 }

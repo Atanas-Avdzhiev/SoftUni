@@ -34,14 +34,18 @@ async function loginHandler(e) {
         alert('All fields are required!');
         return;
     }
+    try {
+        const response = await login(formData.email, formData.password);    // check if data comes correct from the form and goes correct to the server
 
-    const response = await login(formData.email, formData.password);    // check if data comes correct from the form and goes correct to the server
-
-    if (response.accessToken) {
-        localStorage.setItem('userData', JSON.stringify(response));
-        page.redirect('/');
+        if (response.accessToken) {
+            localStorage.setItem('userData', JSON.stringify(response));
+            page.redirect('/');
+        }
+        else {
+            alert(response.message);
+        }
     }
-    else {
-        alert(response.message);
+    catch (err) {
+        alert(err.message);
     }
 }

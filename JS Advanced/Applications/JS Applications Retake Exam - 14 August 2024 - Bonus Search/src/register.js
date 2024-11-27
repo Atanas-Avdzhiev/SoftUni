@@ -39,13 +39,18 @@ async function registerHandler(e) {
         return;
     }
 
-    const response = await register(formData.email, formData.password); // check if data comes correct from the form and goes correct to the server
+    try {
+        const response = await register(formData.email, formData.password); // check if data comes correct from the form and goes correct to the server
 
-    if (response.accessToken) {
-        localStorage.setItem('userData', JSON.stringify(response));
-        page.redirect('/');
+        if (response.accessToken) {
+            localStorage.setItem('userData', JSON.stringify(response));
+            page.redirect('/');
+        }
+        else {
+            alert(response.message);
+        }
     }
-    else {
-        alert(response.message);
+    catch (err) {
+        alert(err.message);
     }
 }

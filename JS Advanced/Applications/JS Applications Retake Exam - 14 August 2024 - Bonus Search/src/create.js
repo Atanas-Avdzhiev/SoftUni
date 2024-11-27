@@ -47,10 +47,14 @@ async function createHandler(e) {
         country: formData.country,    // probably this last property will be different
         details: formData.details
     }
+    try {
+        const response = await create(data);
 
-    const response = await create(data);
-
-    if (response._id) {
-        page.redirect('/dashboard');
+        if (response._id) {
+            page.redirect('/dashboard');
+        }
+    }
+    catch (err) {
+        alert(err.message);
     }
 }

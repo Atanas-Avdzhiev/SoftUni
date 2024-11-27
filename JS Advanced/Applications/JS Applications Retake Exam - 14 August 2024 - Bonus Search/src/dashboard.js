@@ -25,7 +25,13 @@ const template = (arr) => html`
 `;
 
 export async function dashboardView() {
-  const response = await getAll();
-
-  render(template(response), main);
+  try {
+    const response = await getAll();
+    if (response) {
+      render(template(response), main);
+    }
+  }
+  catch (err) {
+    alert(err.message);
+  }
 }

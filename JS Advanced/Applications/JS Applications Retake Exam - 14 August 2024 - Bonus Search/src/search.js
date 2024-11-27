@@ -35,12 +35,13 @@ async function searchHandler(e) {
 
     const searchURL = `http://localhost:3030/data/shows?where=title%20LIKE%20%22${formData.search}%22`;
 
-    const response = await fetch(searchURL);
-    const data = await response.json();
+    try {
+        const response = await fetch(searchURL);
+        const data = await response.json();
 
-    const searchSection = document.querySelector('#search .search-result');
+        const searchSection = document.querySelector('#search .search-result');
 
-    const searchTemplate = html`
+        const searchTemplate = html`
     
     ${data.length === 0 ? html`
     
@@ -63,5 +64,13 @@ async function searchHandler(e) {
         `)}
         `}
     `;
-    render(searchTemplate, searchSection);
+
+        if (data) {
+            render(searchTemplate, searchSection);
+        }
+
+    }
+    catch (err) {
+        alert(err.message);
+    }
 }

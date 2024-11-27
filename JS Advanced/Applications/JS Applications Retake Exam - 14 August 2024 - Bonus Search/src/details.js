@@ -29,21 +29,30 @@ const template = (arr, isOwner, isLogged, likes, likeHandlerTag, isLiked) => htm
 
 export async function detailsView(ctx) {
   const { id } = ctx.params;
-  const response = await getOne(id);
+  try {
+    const response = await getOne(id);
 
-  let isLogged = false;
-  let isOwner = false;
-  //let isLiked = false;
-  let currentOwnerId = '';
-  const userData = JSON.parse(localStorage.getItem('userData'));
+    let isLogged = false;
+    let isOwner = false;
+    //let isLiked = false;
+    let currentOwnerId = '';
+    const userData = JSON.parse(localStorage.getItem('userData'));
 
-  if (userData !== null && userData._id) {
-    currentOwnerId = userData._id;
-    isLogged = true;
+    if (userData !== null && userData._id) {
+      currentOwnerId = userData._id;
+      isLogged = true;
+    }
+
+    if (currentOwnerId === response._ownerId) {
+      isOwner = true;
+    }
+
+    if (response) {
+      render(template(response, isOwner, isLogged), main);
+    }
   }
-
-  if (currentOwnerId === response._ownerId) {
-    isOwner = true;
+  catch (err) {
+    alert(err.message);
   }
 
   // //get likes
@@ -68,8 +77,6 @@ export async function detailsView(ctx) {
   // }
 
   //render(template(response, isOwner, isLogged, dataLikes, likeHandler.bind(ctx), isLiked), main); // use this render if task has likes
-
-  render(template(response, isOwner, isLogged), main);
 }
 
 // async function likeHandler() {

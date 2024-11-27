@@ -23,9 +23,15 @@ const template = (arr, formHandler) => html`
 
 export async function editView(ctx) {
     const { id } = ctx.params;
-    const response = await getOne(id);
-    
-    render(template(response, editHandler.bind(ctx)), main);
+    try {
+        const response = await getOne(id);
+        if (response) {
+            render(template(response, editHandler.bind(ctx)), main);
+        }
+    }
+    catch (err) {
+        alert(err.message);
+    }
 }
 
 async function editHandler(e) {
@@ -53,10 +59,14 @@ async function editHandler(e) {
         country: formData.country,    // probably this last property will be different
         details: formData.details
     }
+    try {
+        const response = await update(data, id);
 
-    const response = await update(data, id);
-
-    if (response._id) {
-        page.redirect(`/dashboard/${id}`);
+        if (response._id) {
+            page.redirect(`/dashboard/${id}`);
+        }
+    }
+    catch (err) {
+        alert(err.message);
     }
 }
