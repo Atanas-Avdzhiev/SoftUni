@@ -10,7 +10,7 @@ const template = (arr, isOwner, isLogged, likes, likeHandlerTag, isLiked) => htm
           <p id="details-title">${arr.name}</p>
           <div id="info-wrapper">
             <div id="details-description">
-              <p id="dashboard">${arr.description}</p>
+              <p>${arr.description}</p>
               <p id="nutrition">Nutrition</p>
               <p id="details-nutrition">${arr.nutrition}</p>
             </div>

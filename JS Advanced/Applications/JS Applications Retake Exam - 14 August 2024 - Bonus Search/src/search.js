@@ -7,7 +7,7 @@ const template = (formHandler) => html`
     <section id="search">
         <div class="form">
           <h2>Search</h2>
-          <form @submit=${formHandler}class="search-form">
+          <form @submit=${formHandler} class="search-form">
             <input type="text" name="search" id="search-input" />
             <button class="button-list">Search</button>
           </form>
