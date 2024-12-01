@@ -29,7 +29,7 @@ const template = (arr, isOwner, isLogged, likes, likeHandlerTag, isLiked) => htm
             ` : ''}
 
             ${!isOwner && isLogged && !isLiked ? html`
-            <a @click=${likeHandlerTag} href="" id="go-btn">Going</a>
+            <a @click=${likeHandlerTag} href="/dashboard/${arr._id}" id="go-btn">Going</a>
             ` : ''}
           </div>
         </div>
