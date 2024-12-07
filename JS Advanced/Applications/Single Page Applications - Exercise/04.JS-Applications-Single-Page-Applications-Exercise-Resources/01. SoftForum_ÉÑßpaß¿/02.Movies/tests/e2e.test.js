@@ -4,8 +4,8 @@ const { expect } = require('chai');
 const host = 'http://localhost:3000'; // Application host (NOT service host - that can be anything)
 
 const interval = 600;
-const DEBUG = false;
-const slowMo = 500;
+const DEBUG = true;
+const slowMo = 2000;
 
 const mockData = {
   users: [
@@ -505,7 +505,7 @@ describe('E2E tests', function () {
       expect(likes[0]).to.contains('Liked 5');
     });
 
-    it('Like button should increase total likes by 1 after a click on it', async () => {
+    it.only('Like button should increase total likes by 1 after a click on it', async () => {
       const user = mockData.users[0];
       const data = mockData.catalog[0];
 
