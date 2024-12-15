@@ -1,0 +1,42 @@
+{
+    "cats": {
+        "1": {
+            "id": "1",
+            "image": "https://ichef.bbci.co.uk/news/976/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg",
+            "name": "Navudohodonosor",
+            "breed": "Bombay Cat",
+            "description": "The Bombay cat is a short-haired breed of domestic cat. Bombays are glossy solid black cats with a muscular build, and have characteristic large bright copper-golden eyes."
+        },
+        "2": {
+            "id": "2",
+            "image": "https://cdn.pixabay.com/photo/2015/06/19/14/20/cat-814952_1280.jpg",
+            "name": "Pretty Kitty",
+            "breed": "Bengal Cat",
+            "description": "Bengals are domestic cats with vivid spots or distinctive marbling, which are equally beautiful."
+        },
+        "3": {
+            "id": "3",
+            "image": "https://cdn.pixabay.com/photo/2018/08/08/05/12/cat-3591348_1280.jpg",
+            "name": "Sarrah",
+            "breed": "American Bobtail Cat",
+            "description": "American Bobtails are a very sturdy breed, with both short- and long-haired coats. Their coat is shaggy rather than dense or fluffy."
+        }
+    },
+    "breeds":{
+        "1": {
+            "breed": "Bombay Cat"
+        },
+        "2": {
+            "breed": "American Bobtail Cat"
+        },
+        "3": {
+            "breed": "Bengal Cat"
+        },
+        "4": {
+            "breed": "British Shorthair Cat"
+        },
+        "5": {
+            "breed": "Unknown"
+        }
+    }
+}
