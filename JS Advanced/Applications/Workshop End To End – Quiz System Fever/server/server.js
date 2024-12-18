@@ -428,6 +428,9 @@ const server = http.createServer((req, res) => {
                 questions.push(newQuestion);
                 findQuiz.questionCount++;
 
+                findQuiz.takenCount = 0;
+                solutions = solutions.filter(solution => solution.quizId !== findQuiz.quizId); // this will delete all solutions for the edited quiz, so the users can solve the quiz again after it has been edited
+
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 return res.end(JSON.stringify({ message: `Successfully added new question for Quiz: ${findQuiz.title}`, data: newQuestion }));
             }
@@ -806,7 +809,7 @@ const server = http.createServer((req, res) => {
 
                 findQuiz.takenCount = 0;
                 solutions = solutions.filter(solution => solution.quizId !== findQuiz.quizId); // this will delete all solutions for the edited quiz, so the users can solve the quiz again after it has been edited
-                
+
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 return res.end(JSON.stringify({ message: `Successfully edited question for Quiz: ${findQuiz.title}`, data: editQuestion }));
             }
