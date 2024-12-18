@@ -96,3 +96,8 @@
     border-color: #666666;
     cursor: auto;
 }
+
+.done-btn {
+    font-size: 20px;
+    margin: 0 45%;
+}

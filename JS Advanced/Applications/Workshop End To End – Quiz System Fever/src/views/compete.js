@@ -1,67 +1,72 @@
-import { getAll, getOne, onDetailsClick } from "../../modules/helpers.js";
-import { html, render, page } from "../../modules/modules.js";
+import { getAllQuestions, getOne } from "../../modules/helpers.js";
+import { html, render, page, repeat } from "../../modules/modules.js";
 
 const main = document.querySelector('body > #container > #content');
 
-const template = (quizCount, isLoggedIn, recent) => html`
+export let correctQuestionAnswers = [];
+
+let currentQuestionIndex = 0;
+let quizId = null;
+
+let quizData = null;
+let questionsData = null;
+
+const template = (quizData, singleQuestionData, allQuestionData) => html`
     <section id="quiz">
         <header class="pad-large">
-            <h1>Extensible Markup Language: Question 1 / 15</h1>
+            <h1>${quizData.title}: Question ${currentQuestionIndex + 1} / ${quizData.questionCount}</h1>
             <nav class="layout q-control">
                 <span class="block">Question index</span>
-                <a class="q-index q-current" href="#"></a>
-                <a class="q-index q-answered" href="#"></a>
-                <a class="q-index q-answered" href="#"></a>
-                <a class="q-index q-answered" href="#"></a>
-                <a class="q-index" href="#"></a>
-                <a class="q-index" href="#"></a>
-                <a class="q-index" href="#"></a>
-                <a class="q-index" href="#"></a>
-                <a class="q-index" href="#"></a>
-                <a class="q-index" href="#"></a>
-                <a class="q-index" href="#"></a>
-                <a class="q-index" href="#"></a>
-                <a class="q-index" href="#"></a>
-                <a class="q-index" href="#"></a>
-                <a class="q-index" href="#"></a>
+                ${allQuestionData.map((questionData, index) => {
+    if (currentQuestionIndex > index) {
+        return html`<a @click=${(e) => changeQuestion(e, index)} class="q-index q-answered" href="#"></a>`;
+    }
+    else if (currentQuestionIndex === index) {
+        return html`<a @click=${(e) => changeQuestion(e, index)} class="q-index q-current" href="#"></a>`;
+    }
+    else {
+        return html`<a @click=${(e) => changeQuestion(e, index)} class="q-index" href="#"></a>`;
+    }
+})
+    }
             </nav>
         </header>
         <div class="pad-large alt-page">
 
             <article class="question">
                 <p class="q-text">
-                    This is the first question. Veniam unde beatae est ab quisquam quos officia, eius
-                    harum accusamus adipisci?
+                    ${singleQuestionData.text}
                 </p>
 
                 <div>
+    ${repeat(
+        singleQuestionData.answers,
+        (_, index) => `${currentQuestionIndex}-${index}`,
+        (answer, index) => {
+            const checked = index === correctQuestionAnswers[currentQuestionIndex];
+            return html`
                     <label class="q-answer radio">
-                        <input class="input" type="radio" name="question-1" value="0" />
+                        <input class="input"
+                            id="radio-${currentQuestionIndex}-${index}"
+                            type="radio" 
+                            name="question-${currentQuestionIndex}" 
+                            value=${index} 
+                            .checked=${checked}>
                         <i class="fas fa-check-circle"></i>
-                        This is answer 1
-                    </label>
-
-                    <label class="q-answer radio">
-                        <input class="input" type="radio" name="question-1" value="0" />
-                        <i class="fas fa-check-circle"></i>
-                        This is answer 2
-                    </label>
-
-                    <label class="q-answer radio">
-                        <input class="input" type="radio" name="question-1" value="0" />
-                        <i class="fas fa-check-circle"></i>
-                        This is answer 3
-                    </label>
-
-                </div>
+                        ${answer}
+                    </label>`;
+        }
+    )
+    }
+</div>
 
                 <nav class="q-control">
-                    <span class="block">12 questions remaining</span>
-                    <a class="action" href=#><i class="fas fa-arrow-left"></i> Previous</a>
-                    <a class="action" href=#><i class="fas fa-sync-alt"></i> Start over</a>
+                    <span class="block">${quizData.questionCount - (currentQuestionIndex + 1)} questions remaining</span>
+                    <a @click=${prevQuestion} class="action" href=#><i class="fas fa-arrow-left"></i> Previous</a>
+                    <a @click=${startOver} class="action" href=#><i class="fas fa-sync-alt"></i> Start over</a>
                     <div class="right-col">
-                        <a class="action" href=#>Next <i class="fas fa-arrow-right"></i></a>
-                        <a class="action" href=#>Submit answers</a>
+                        <a @click=${nextQuestion} class="action" href=#>Next <i class="fas fa-arrow-right"></i></a>
+                        <a @click=${(e) => submitAnswers(e, quizData.quizId)} class="action" href=#>Submit answers</a>
                     </div>
                 </nav>
             </article>
@@ -70,9 +75,116 @@ const template = (quizCount, isLoggedIn, recent) => html`
     </section>
 `;
 
-export async function competeView() {
-    const quizData = await getOne();
-    const isLoggedIn = localStorage.getItem('userData') !== null;
+export async function competeView(ctx) {
+    quizId = ctx.params.id;
 
-    render(template(quizData, isLoggedIn), main);
+    quizData = (await getOne(quizId)).data;
+    questionsData = (await getAllQuestions(quizId)).data;
+
+    uncheckQuestions(0);
+}
+
+function nextQuestion(e) {
+    e.preventDefault();
+
+    if (currentQuestionIndex + 1 >= questionsData.length) {
+        alert("There are no questions left!");
+        return;
+    }
+
+    const checkedValue = document.querySelector(".input:checked") ? Number(document.querySelector(".input:checked").value) : null;
+    correctQuestionAnswers[currentQuestionIndex] = checkedValue;
+
+    currentQuestionIndex = Math.min(currentQuestionIndex + 1, questionsData.length - 1);
+    uncheckQuestions(currentQuestionIndex);
+}
+
+function prevQuestion(e) {
+    e.preventDefault();
+
+    if (currentQuestionIndex - 1 <= -1) {
+        alert("You can't go below zero!");
+        return;
+    }
+
+    const checkedValue = document.querySelector(".input:checked") ? Number(document.querySelector(".input:checked").value) : null;
+    correctQuestionAnswers[currentQuestionIndex] = checkedValue;
+
+    currentQuestionIndex = Math.max(currentQuestionIndex - 1, 0);
+    uncheckQuestions(currentQuestionIndex);
+}
+
+function changeQuestion(e, index) {
+    e.preventDefault();
+
+    if (currentQuestionIndex === index) {
+        return;
+    }
+
+    const checkedValue = document.querySelector(".input:checked") ? Number(document.querySelector(".input:checked").value) : null;
+    correctQuestionAnswers[currentQuestionIndex] = checkedValue;
+
+    currentQuestionIndex = index;
+    uncheckQuestions(currentQuestionIndex);
+}
+
+function startOver(e) {
+    e.preventDefault();
+
+    currentQuestionIndex = 0;
+    correctQuestionAnswers = [];
+    uncheckQuestions(currentQuestionIndex);
+}
+
+function uncheckQuestions(index) {
+    const questionEls = Array.from(document.querySelectorAll(".input"));
+    questionEls.map(el => el.checked = false);
+    render(template(quizData, questionsData[index], questionsData), main);
+}
+
+async function submitAnswers(e, quizId) {
+    e.preventDefault();
+
+    const checkedValue = document.querySelector(".input:checked") ? Number(document.querySelector(".input:checked").value) : null;
+    correctQuestionAnswers[currentQuestionIndex] = checkedValue;
+
+    const [correctAnswersCount] = getTestResults(questionsData);
+
+    try {
+        const res = await fetch("http://localhost:5001/data/solutions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-authorization": (JSON.parse(localStorage.getItem("userData"))).accessToken,
+            },
+            body: JSON.stringify({
+                correct: correctAnswersCount,
+                quizId,
+            })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            throw new Error(data.message);
+        }
+
+        page.redirect(`/browse/result/${quizId}`);
+    }
+    catch (err) {
+        alert(err.message);
+        console.error(err);
+    }
+}
+
+export function getTestResults(questionsData) {
+    let correctAnswers = 0;
+
+    for (let i = 0; i < questionsData.length; i++) {
+        if (questionsData[i].correctIndex === correctQuestionAnswers[i]) {
+            correctAnswers++;
+        }
+    }
+
+    return [correctAnswers, questionsData.length];
 }

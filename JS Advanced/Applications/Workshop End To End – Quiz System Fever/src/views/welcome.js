@@ -10,7 +10,7 @@ const template = (quizCount, isLoggedIn, recent) => html`
             <div class="splash right-col"><i class="fas fa-clipboard-list"></i></div>
             <div class="glass welcome">
                 <h1>Welcome to Quiz Fever!</h1>
-                <p>Home to ${quizCount} quizzes in 12 topics. <a href="/browse">Browse all quizzes</a>.</p>
+                <p>Home to ${quizCount} quizzes in 3 topics. <a href="/browse">Browse all quizzes</a>.</p>
                 ${!isLoggedIn ? html`<a class="action cta" href="/login">Sign in to create a quiz</a>` : ""}
             </div>
         </div>

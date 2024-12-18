@@ -6,11 +6,11 @@ const main = document.querySelector('body > #container > #content');
 const template = (data = null) => html`
     <section id="browse">
         <header class="pad-large">
-            <form class="browse-filter">
+            <form @submit=${filterSubmit} class="browse-filter">
                 <input class="input" type="text" name="query">
                 <select class="input" name="topic">
                     <option value="all">All Categories</option>
-                    <option value="it">Languages</option>
+                    <option value="lang">Languages</option>
                     <option value="hardware">Hardware</option>
                     <option value="software">Tools and Software</option>
                 </select>
@@ -31,9 +31,9 @@ const template = (data = null) => html`
                 <div class="sk-cube sk-cube8"></div>
                 <div class="sk-cube sk-cube9"></div>
             </div>
-        </div>` : html`
+        </div>` : data.length !== 0 ? html`
         <div class="pad-large alt-page">
-        ${data.map(item => html`
+            ${data.map(item => html`
             
                 <article class="preview layout">
                     <div class="right-col">
@@ -50,7 +50,8 @@ const template = (data = null) => html`
                     </div>
                 </article>
                 `)}
-            </div>`}
+            </div>` : html `<h1 id="no-result" class="preview">No Results Found. Try again.</h1>`
+        } 
     </section>
 `;
 
@@ -60,4 +61,33 @@ export async function dashboardView() {
     const data = await getAll();
 
     render(template(data), main);
+}
+
+async function filterSubmit(e) {
+    render(template(), main);
+
+    e.preventDefault();
+
+    let { query, topic } = Object.fromEntries(
+        new FormData(e.currentTarget)
+    );
+
+    if (topic === "lang") {
+        topic = "languages";
+    }
+
+    try {
+        const res = await fetch(`http://localhost:5001/data/&&title=${query}&&topic=${topic}`);
+        const data = await res.json();
+
+        if (! res.ok) {
+            throw new Error(data.message);
+        }
+
+        render(template(data.data), main);
+    }
+    catch (err) {
+        alert(err.message);
+        console.error(err);
+    }
 }

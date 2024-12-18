@@ -55,14 +55,14 @@ async function onSubmit(e) {
                 "Content-Type": "application/json",
                 "x-authorization": JSON.parse(localStorage.getItem("userData")).accessToken,
             },
-            body: JSON.stringify({
+            body: JSON.stringify({ 
                 title,
                 topic,
                 description
             }),
         });
-
-        if (!response.ok) {
+        
+        if (! response.ok) {
             const data = await response.json();
             throw new Error(data.message);
         };
@@ -70,7 +70,7 @@ async function onSubmit(e) {
         const data = await response.json();
         page.redirect(`/browse/edit/${data.data.quizId}`);
     }
-    catch (err) {
+    catch(err) {
         alert(err.message);
         console.error(err);
     }

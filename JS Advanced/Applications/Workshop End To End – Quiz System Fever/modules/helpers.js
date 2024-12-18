@@ -27,7 +27,7 @@ export async function getAllQuestions(quizId) {
     }
 }
 
-export function onDetailsClick(e, id) {
+export function onDetailsClick(e = null, id) {
     e.preventDefault();
     page.redirect(`/browse/${id}`);
 }
