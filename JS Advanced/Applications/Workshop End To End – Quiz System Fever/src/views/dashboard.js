@@ -40,7 +40,7 @@ const template = (data = null) => html`
                         <a @click=${(e) => onDetailsClick(e, item.quizId)} class="action cta" href="#">View Quiz</a>
                     </div>
                     <div class="left-col">
-                        <h3><a class="quiz-title-link" href="#">${item.title}</a></h3>
+                        <h3><a @click=${(e) => onDetailsClick(e, item.quizId)} class="quiz-title-link" href="#">${item.title}</a></h3>
                         <span class="quiz-topic">Topic: ${item.topic}</span>
                         <div class="quiz-meta">
                             <span>${item.questionCount} questions</span>
@@ -50,8 +50,8 @@ const template = (data = null) => html`
                     </div>
                 </article>
                 `)}
-            </div>` : html `<h1 id="no-result" class="preview">No Results Found. Try again.</h1>`
-        } 
+            </div>` : html`<h1 id="no-result" class="preview">No Results Found. Try again.</h1>`
+    } 
     </section>
 `;
 
@@ -72,15 +72,24 @@ async function filterSubmit(e) {
         new FormData(e.currentTarget)
     );
 
-    if (topic === "lang") {
-        topic = "languages";
+    if (topic === 'all') {
+        topic = 'All Categories';
+    }
+    if (topic === 'lang') {
+        topic = 'Languages';
+    }
+    if (topic === 'hardware') {
+        topic = 'Hardware';
+    }
+    if (topic === 'software') {
+        topic = 'Tools and Software';
     }
 
     try {
         const res = await fetch(`http://localhost:5001/data/&&title=${query}&&topic=${topic}`);
         const data = await res.json();
 
-        if (! res.ok) {
+        if (!res.ok) {
             throw new Error(data.message);
         }
 

@@ -157,6 +157,7 @@ const template = (data, quizId) => html`
 
 export async function editView(ctx) {
     const questionData = await getAllQuestions(ctx.params.id);
+    isBeingEdit = [];
 
     if (questionData.data.length === 0) {
         isBeingEdit[0] = true;
@@ -174,11 +175,14 @@ async function saveChanges(e, quizId, index) {
 
     const answers = Array.from(e.target.closest(".editor-question").querySelectorAll("input.input[type='text']")).map(item => item.value);
     const text = e.target.closest(".editor-question").querySelector(".editor-text").value;
-    console.log(answers)
-    console.log(text)
-    console.log(quizId)
-    console.log(correctIndex)
+    const isValidAnswers = Array.isArray(answers) && answers.every(question => typeof question === 'string' && question !== '');
+    const isValidCorrectIndex = (correctIndex >= 0 && correctIndex < answers.length) && typeof correctIndex === 'number';
+
     try {
+        if (!isValidAnswers || text === "" || !isValidCorrectIndex) {
+            throw new Error("All fields are required! Answers must be atleast 2!");
+        }
+
         const response = await fetch("http://localhost:5001/data/questions", {
             method: "POST",
             headers: {
@@ -194,7 +198,7 @@ async function saveChanges(e, quizId, index) {
         });
 
         const data = await response.json();
-
+        
         if (!response.ok) {
             throw new Error(data.message);
         }

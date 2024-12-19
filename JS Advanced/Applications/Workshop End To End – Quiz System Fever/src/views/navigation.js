@@ -24,8 +24,35 @@ const template = (isLogged, logoutHandler) => html`
     </nav>
 `;
 
-export function navigation(ctx, next) {
-    const userData = localStorage.getItem('userData');
-    render(template(!!userData, logout), header);
+export async function navigation(ctx, next) {
+    const userData = await authorize();
+    
+    render(template(userData, logout), header);
     next();
+}
+
+async function authorize() {
+    try {
+        const headerAuthorization = localStorage.getItem("userData") ? JSON.parse(localStorage.getItem('userData')).accessToken : undefined;
+
+        const res = await fetch('http://localhost:5001/users/verify', {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                'x-authorization': headerAuthorization
+            }
+        });
+
+        const data = await res.json();
+
+        if (data.message !== 'Verification successful.') {
+            localStorage.clear();
+            return false;
+        }
+        return true;
+    }
+    catch (err) {
+        console.error(err);
+        localStorage.clear();
+    }
 }

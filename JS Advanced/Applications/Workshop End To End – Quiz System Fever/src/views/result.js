@@ -84,9 +84,6 @@ export async function resultView(ctx) {
     questionsData = (await getAllQuestions(quizId)).data;
     [ correctAnswersCount, quizLength ] = getTestResults(questionsData);
 
-    console.log(questionsData);
-    console.log(correctQuestionAnswers);
-
     render(template(correctAnswersCount, quizLength, quizId, questionsData, quizData), main);
 }
 
