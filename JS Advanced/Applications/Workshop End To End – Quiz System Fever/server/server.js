@@ -788,6 +788,8 @@ const server = http.createServer((req, res) => {
     }
 
     const query = querystring.parse(req.url);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+    const usernameRegex = /^[a-zA-Z0-9._]{3,30}$/;
 
     if (req.url === '/users/register' && req.method === 'POST') { // Register user
         let body = '';
@@ -810,14 +812,34 @@ const server = http.createServer((req, res) => {
                     return res.end(JSON.stringify({ message: 'Email must be a string!' }));
                 }
 
+                if (!emailRegex.test(parsedBody.email.trim())) {
+                    res.writeHead(400, { 'Content-Type': 'application/json' });
+                    return res.end(JSON.stringify({ message: 'Please enter a valid email address.' }));
+                }
+
                 if (typeof parsedBody.password !== 'string') {
                     res.writeHead(400, { 'Content-Type': 'application/json' });
                     return res.end(JSON.stringify({ message: 'Password must be a string!' }));
                 }
 
+                if (parsedBody.password.trim().length < 6) {
+                    res.writeHead(400, { 'Content-Type': 'application/json' });
+                    return res.end(JSON.stringify({ message: 'Password must be atleast 6 characters long!' }));
+                }
+
                 if (typeof parsedBody.username !== 'string') {
                     res.writeHead(400, { 'Content-Type': 'application/json' });
                     return res.end(JSON.stringify({ message: 'Username must be a string!' }));
+                }
+
+                if (parsedBody.username.trim().length < 3 || parsedBody.username.trim().length > 30) {
+                    res.writeHead(400, { 'Content-Type': 'application/json' });
+                    return res.end(JSON.stringify({ message: 'Username must be between 3 and 30 characters long!' }));
+                }
+
+                if (!usernameRegex.test(parsedBody.username.trim())) {
+                    res.writeHead(400, { 'Content-Type': 'application/json' });
+                    return res.end(JSON.stringify({ message: 'Username must include only letters, numbers, underscores or dots!' }));
                 }
 
                 const findAcc = users.find(x => x.username.toLowerCase() === parsedBody.username.toLowerCase());
