@@ -1,0 +1,58 @@
+<section id="details-page">
+
+    <div class="main_card">
+        <div class="card_left">
+            <div class="card_datails">
+
+                <h1>{{movie.title}}</h1>
+                <div class="card-movie">
+                    <div class="first-info">
+                        <p class="card-genre">Genre: {{movie.genre}}</p>
+                        <p class="card-director">Directror: {{movie.director}}</p>
+
+                    </div>
+                    <div class="second-info">
+
+                        <p class="card-year">Year: {{movie.year}}</p>
+                        <p class="card-ranking">Rating: <span id="stars">
+                                {{#each ratingArray}}
+                                &#x2605;
+                                {{/each}}
+                            </span></p>
+                    </div>
+
+                </div>
+
+                <p class="disc">Description: {{movie.description}}</p>
+                <p class="card-category">Category: {{movie.category}}</p>
+            </div>
+            {{#if isOwner}}
+            <a href="/movies/{{movie._id}}/addCast" id="add-cast-button">Add Cast</a>
+            <div class="details-btn">
+                <a href="/movies/{{movie._id}}/edit" id="edit-button">Edit</a>
+                <a href="/movies/{{movie._id}}/delete" id="delete-button">Delete</a>
+            </div>
+            {{/if}}
+        </div>
+        <div class="card_right">
+            <img src="{{movie.imageURL}}" alt="{{movie.title}}">
+        </div>
+
+    </div>
+
+    <div class="main-cast-card">
+        {{#each movie.cast}}
+        <div class="cast-card">
+            <div class="card-img">
+                <img src="{{actor.imageURL}}" alt="{{actor.name}}">
+            </div>
+            <div class="cast-info">
+                <h1>{{actor.name}}</h1>
+                <h3>Age: {{actor.age}}</h3>
+                <h3>Born: {{actor.born}}</h3>
+                <h3>Character: {{character}}</h3>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</section>
