@@ -76,7 +76,7 @@ app.get('/movies/:movieId/details', async (req, res) => {
         return res.render('details', { movie, ratingArray, isOwner });
     } catch (err) {
         console.log(err);
-        return res.render('404');
+        return res.render('404', { error: 'Something went wrong! Please try again later!' });
     }
 });
 
@@ -86,7 +86,7 @@ app.get('/search', async (req, res) => {    // initial load of search page
         return res.render('search', { movies });
     } catch (err) {
         console.log(err);
-        return res.render('404');
+        return res.render('404', { error: 'Something went wrong! Please try again later!' });
     }
 });
 
@@ -112,7 +112,7 @@ app.get('/search/movie', async (req, res) => {  // actual search
         return res.render('search', { movies });
     } catch (err) {
         console.log(err);
-        return res.render('404');
+        return res.render('404', { error: 'Something went wrong! Please try again later!' });
     }
 });
 
@@ -142,7 +142,7 @@ app.get('/movies/:movieId/addCast', isAuth, async (req, res) => {
         return res.render('cast-attach', { movie, casts });
     } catch (err) {
         console.log(err);
-        return res.render('404');
+        return res.render('404', { error: 'Something went wrong! Please try again later!' });
     }
 });
 
@@ -231,7 +231,7 @@ app.get('/movies/:movieId/edit', isAuth, async (req, res) => {
         return res.render('edit', { movie });
     } catch (err) {
         console.log(err);
-        return res.render('404');
+        return res.render('404', { error: 'Something went wrong! Please try again later!' });
     }
 });
 
@@ -272,7 +272,7 @@ app.get('/movies/:movieId/delete', isAuth, async (req, res) => {
         res.redirect('/');
     } catch (err) {
         console.log(err);
-        res.render('404');
+        return res.render('404', { error: 'Something went wrong! Please try again later!' });
     }
 });
 
