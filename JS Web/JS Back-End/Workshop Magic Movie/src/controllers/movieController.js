@@ -136,8 +136,8 @@ router.get('/movies/:movieId/delete', isAuth, async (req, res) => {
         await movieService.del(req.params.movieId);
         res.redirect('/');
     } catch (err) {
-        console.log(err);
-        return res.render('404', { error: 'Something went wrong! Please try again later!' });
+        const errorMessage = getErrorMessage(err);
+        return res.render('404', { error: errorMessage });
     }
 });
 

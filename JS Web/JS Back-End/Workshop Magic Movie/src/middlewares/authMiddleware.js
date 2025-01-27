@@ -1,8 +1,10 @@
 import 'dotenv/config';
 import jwt from 'jsonwebtoken';
+import movieService from '../services/movieService.js';
 
-export const authMiddleware = (req, res, next) => {
+export const authMiddleware = async (req, res, next) => {
     const token = req.cookies['auth'];
+
     if (!token) {
         return next();
     }
@@ -10,11 +12,22 @@ export const authMiddleware = (req, res, next) => {
     try {
         const JWT_SECRET = process.env.JWT_SECRET;
         const decodedToken = jwt.verify(token, JWT_SECRET);
-        
+
         const user = {
             _id: decodedToken._id,
             email: decodedToken.email,
         };
+
+        const url = req.url.split('/');
+
+        if (url[3] === 'edit' || url[3] === 'delete' || url[3] === 'addCast') {
+            const movieId = url[2];
+            const movie = await movieService.getOne(movieId);
+
+            if (movie.owner.toString() !== user?._id) {
+                throw new Error('User is not the owner of this movie!');
+            }
+        }
 
         req.user = user;
         req.isAuthenticated = true;
@@ -25,9 +38,11 @@ export const authMiddleware = (req, res, next) => {
         return next();
     } catch (err) {
         console.log(err);
+        if (err.message === 'User is not the owner of this movie!') {
+            return res.redirect('/');
+        }
         res.clearCookie('auth');
-
-        res.redirect('/login')
+        res.redirect('/login');
     }
 };
 
