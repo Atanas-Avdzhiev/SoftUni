@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 import homeController from './controllers/homeController.js';
 import authController from './controllers/authController.js';
+import volcanoController from './controllers/volcanoController.js';
 import { authMiddleware } from './middlewares/authMiddleware.js';
 
 const app = express();
@@ -34,8 +35,7 @@ app.use(authMiddleware);
 
 app.use(homeController);
 app.use(authController);
-// app.use(movieController);
-// app.use(castController);
+app.use(volcanoController);
 
 app.all('*', (req, res) => {
     res.render('404');

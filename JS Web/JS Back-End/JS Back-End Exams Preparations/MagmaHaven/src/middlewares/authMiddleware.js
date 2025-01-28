@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import jwt from 'jsonwebtoken';
+import volcanoService from '../services/volcanoService.js';
 
 export const authMiddleware = async (req, res, next) => {
     const token = req.cookies['auth'];
@@ -19,14 +20,14 @@ export const authMiddleware = async (req, res, next) => {
 
         const url = req.url.split('/');
 
-        // if (url[3] === 'edit' || url[3] === 'delete' || url[3] === 'addCast') {
-        //     const movieId = url[2];
-        //     const movie = await movieService.getOne(movieId);
+        if (url[3] === 'edit' || url[3] === 'delete') {
+            const volcanoId = url[2];
+            const volcano = await volcanoService.getOne(volcanoId);
 
-        //     if (movie.owner.toString() !== user?._id) {
-        //         throw new Error('User is not the owner of this movie!');
-        //     }
-        // }
+            if (volcano.owner.toString() !== user?._id) {
+                throw new Error('User is not the owner of this volcano!');
+            }
+        }
 
         req.user = user;
         req.isAuthenticated = true;

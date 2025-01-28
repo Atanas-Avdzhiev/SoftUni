@@ -49,11 +49,11 @@ const volcanoSchema = new Schema({
     },
     voteList: [{
         _id: false,
-        users: [{
+        user: {
             type: Types.ObjectId,
             ref: 'User',
-            required: [true, 'User is required!'],
-        }],
+            required: [true, 'User is required!']
+        }
     }],
     owner: {
         type: Types.ObjectId,

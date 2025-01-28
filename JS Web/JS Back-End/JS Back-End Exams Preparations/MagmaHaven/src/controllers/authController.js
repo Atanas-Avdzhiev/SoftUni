@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { notAuth } from '../middlewares/authMiddleware.js';
+import { notAuth, isAuth } from '../middlewares/authMiddleware.js';
 import { getErrorMessage } from '../utils/errorUtils.js';
 import authService from '../services/authService.js';
 
@@ -57,7 +57,7 @@ router.post('/login', notAuth, async (req, res) => {
     }
 });
 
-router.get('/logout', (req, res) => {
+router.get('/logout', isAuth, (req, res) => {
     res.clearCookie('auth');
 
     res.redirect('/');
