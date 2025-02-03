@@ -1,0 +1,42 @@
+<section class="volcano-search">
+    <h1>Search</h1>
+
+    <form class="search-form" action="/search/volcanos">
+        <input type="text" class="search-volcano" name="name" placeholder="Search by Name..." value="{{filter.name}}">
+        <select id="type" name="typeVolcano">
+            <option value="Supervolcanoes" {{#if (eq filter.typeVolcano "Supervolcanoes" )}}selected{{/if}}>
+                Supervolcanoes</option>
+            <option value="Submarine" {{#if (eq filter.typeVolcano "Submarine" )}}selected{{/if}}>Submarine</option>
+            <option value="Subglacial" {{#if (eq filter.typeVolcano "Subglacial" )}}selected{{/if}}>Subglacial</option>
+            <option value="Mud" {{#if (eq filter.typeVolcano "Mud" )}}selected{{/if}}>Mud</option>
+            <option value="Stratovolcanoes" {{#if (eq filter.typeVolcano "Stratovolcanoes" )}}selected{{/if}}>
+                Stratovolcanoes</option>
+            <option value="Shield" {{#if (eq filter.typeVolcano "Shield" )}}selected{{/if}}>Shield</option>
+        </select>
+        <button type="submit" class="btn-search">Search</button>
+    </form>
+    <div class="search-result">
+        {{#if volcanos}}
+        <div class="search-list">
+            {{#each volcanos}}
+            <div class="volcano">
+                <div class="volcano-img">
+                    <img src="{{image}}">
+                </div>
+                <div class="volcano-info">
+                    <h1>{{name}}</h1>
+                    <p><span>Location: </span>{{location}}</p>
+                    <p><span>Volcano Type: </span>{{typeVolcano}}</p>
+                </div>
+
+                <a href="/volcano/{{_id}}/details" class="btn-details">Details</a>
+            </div>
+            {{/each}}
+        </div>
+        {{else}}
+        <div class="no-match">
+            <p>No match was found!</p>
+        </div>
+        {{/if}}
+    </div>
+</section>
