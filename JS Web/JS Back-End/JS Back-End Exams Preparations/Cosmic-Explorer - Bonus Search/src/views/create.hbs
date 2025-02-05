@@ -1,0 +1,39 @@
+<form class="planet-form" method="POST">
+    <label for="name">Name of Planet:</label>
+    <input type="text" id="name" name="name" value="{{data.name}}">
+
+    <label for="age">Age (in billion years):</label>
+    <input type="text" id="age" name="age" value="{{data.age}}">
+
+    <label for="solarSystem">Solar System:</label>
+    <input type="text" id="solarSystem" name="solarSystem" value="{{data.solarSystem}}">
+
+    <label for="type">Type:</label>
+    <select id="type" name="type">
+        <option value="---" selected>---</option>
+        <option value="Inner" {{#if (eq data.type "Inner" )}}selected{{/if}}>Inner</option>
+        <option value="Outer" {{#if (eq data.type "Outer" )}}selected{{/if}}>Outer</option>
+        <option value="Dwarf" {{#if (eq data.type "Dwarf" )}}selected{{/if}}>Dwarf</option>
+    </select>
+
+    <label for="moons">Moons (count):</label>
+    <input type="number" id="moons" name="moons" value="{{data.moons}}">
+
+    <label for="size">Size (in km):</label>
+    <input type="number" id="size" name="size" value="{{data.size}}">
+
+    <label for="rings">Rings:</label>
+    <select id="rings" name="rings">
+        <option value="---" selected>---</option>
+        <option value="Yes" {{#if (eq data.rings "Yes" )}}selected{{/if}}>Yes</option>
+        <option value="No" {{#if (eq data.rings "No" )}}selected{{/if}}>No</option>
+    </select>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" rows="4">{{data.description}}</textarea>
+
+    <label for="image">Image URL:</label>
+    <input type="url" id="image" name="image" value="{{data.image}}">
+
+    <button type="submit">Add Planet</button>
+</form>
