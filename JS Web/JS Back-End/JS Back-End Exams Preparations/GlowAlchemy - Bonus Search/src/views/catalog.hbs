@@ -1,0 +1,15 @@
+<h2>Product Catalog</h2>
+<section class="products">
+    {{#if items}}
+    {{#each items}}
+    <article class="product">
+        <img src="{{image}}">
+        <h3>{{name}}</h3>
+        <p>Suitable for: {{skin}}</p>
+        <a href="/cosmetic/{{_id}}/details">Read More</a>
+    </article>
+    {{/each}}
+    {{else}}
+    <p class="no-post">There are no products found yet!</p>
+    {{/if}}
+</section>
