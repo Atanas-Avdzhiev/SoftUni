@@ -1,0 +1,55 @@
+<!-- In case of error, display the following div--><!--
+
+            <div class="error-box">
+                <p>Show each error in a separate paragraph</p>
+            </div>
+
+            -->
+
+<!-- Details Page - Auction owner -->
+<section id="catalog-section">
+
+    <h1 class="item">
+        {{item.title}}
+        <div class="f-right">
+            <a class="action pad-small f-left" href="/auction/{{item._id}}/edit">Edit</a>
+            <a class="action pad-small f-left" href="/auction/{{item._id}}/delete">Delete</a>
+        </div>
+    </h1>
+    <div class="item padded">
+
+        <div class="layout right large">
+
+            <div class="col">
+                <img src="{{item.image}}" class="img-large">
+            </div>
+
+            <div class="content pad-med">
+
+                <p>In category: <strong>{{item.category}}</strong></p>
+                <p>{{item.description}}</p>
+
+                <div class="align-center">
+                    <div>
+                        Current price: $<strong>{{item.price}}</strong>
+                    </div>
+
+                    <div>
+                        {{#if hasBid}}
+                        Bid by <strong>{{bidderEmail}}</strong>
+
+                        <a class="action pad-med cta" href="/auction/{{item._id}}/close">Close Auction</a>
+
+                        {{else}}
+                        No bids
+                        {{/if}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>Listed by Peter Jackson</footer>
+    </div>
+
+</section>

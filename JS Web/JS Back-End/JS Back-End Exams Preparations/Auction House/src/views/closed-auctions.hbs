@@ -1,0 +1,42 @@
+<!-- In case of error, display the following div-->
+<!--
+
+            <div class="error-box">
+                <p>Show each error in a separate paragraph</p>
+            </div>
+
+            -->
+
+<!-- Closed Auctions Page -->
+<section id="catalog-section" class="spaced">
+
+    <h1 class="item">Closed Auctions</h1>
+
+    {{#if items}}
+    <ul class="catalog cards">
+        {{#each items}}
+        <li class="item">
+            <header class="pad-med">
+                <h2>{{title}}</h2>
+            </header>
+
+            <div class="align-center">
+
+                <img class="img-thumb" src="{{image}}">
+
+            </div>
+
+            <footer class="align-center pad-med">
+                <p>Closing price: <strong>${{price}}</strong></p>
+                from {{bidder.firstName}} {{bidder.lastName}}
+            </footer>
+        </li>
+        {{/each}}
+    </ul>
+
+    {{else}}
+    <div class="item pad-large align-center">
+        <p>You haven't closed any auctions yet.</p>
+    </div>
+    {{/if}}
+</section>
