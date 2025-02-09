@@ -1,0 +1,20 @@
+<section class="profile col-md-6 text-center col-lg" id="profile-page">
+    <div class="profile-container">
+        <img class="profile-img" src="{{#if isMale}}/static/images/male.png{{else}}/static/images/female.png{{/if}}">
+        <p>Email: <span>{{userEmail}}</span></p>
+    </div>
+    <div class="profile-info">
+        <p>Trips History: <span>{{userItems.length}}</span> counts</p>
+
+        <div class="trips-info">
+            {{#if userItems}}
+            {{#each userItems}}
+            <p>from <span>{{startPoint}}</span> to <span>{{endPoint}}</span> on <span>{{date}}</span> at <span>{{time}}</span></p>
+            {{/each}}
+            {{else}}
+            <p>there are no offer trips yet...</p>
+            {{/if}}
+        </div>
+
+    </div>
+</section>
