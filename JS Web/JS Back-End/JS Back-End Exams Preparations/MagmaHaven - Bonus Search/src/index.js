@@ -41,5 +41,5 @@ app.all('*', (req, res) => {
     res.render('404', { title: '404 Page' });
 });
 
-const port = 3000;
+const port = 3001;
 app.listen(port, () => console.log(`Server is listening on http://localhost:${port}`));

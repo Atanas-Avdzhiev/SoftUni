@@ -1,0 +1,28 @@
+<section id="create-container">
+    <div class="create-container-info">
+        <h1>Create Event</h1>
+        <form method="POST">
+            <label>Name of the Disaster:</label>
+            <input type="text" id="name" name="name" placeholder="..." value="{{data.name}}">
+            <label>Type of Disaster:</label>
+            <select id="type" name="type">
+                <option value="Wildfire" {{#if (eq data.type "Wildfire")}}selected{{/if}}>Wildfire</option>
+                <option value="Flood" {{#if (eq data.type "Flood")}}selected{{/if}}>Flood</option>
+                <option value="Earthquake" {{#if (eq data.type "Earthquake")}}selected{{/if}}>Earthquake</option>
+                <option value="Hurricane" {{#if (eq data.type "Hurricane")}}selected{{/if}}>Hurricane</option>
+                <option value="Drought" {{#if (eq data.type "Drought")}}selected{{/if}}>Drought</option>
+                <option value="Tsunami" {{#if (eq data.type "Tsunami")}}selected{{/if}}>Tsunami</option>
+                <option value="Other" {{#if (eq data.type "Other")}}selected{{/if}}>Other</option>
+            </select>
+            <label>Year of the Event:</label>
+            <input type="number" id="year" name="year" placeholder="..." value="{{data.year}}">
+            <label>Location:</label>
+            <input type="text" id="location" name="location" placeholder="..." value="{{data.location}}">
+            <label>Image:</label>
+            <input type="text" id="image" name="image" placeholder="http://..." value="{{data.image}}">
+            <label>Description:</label>
+            <textarea id="description" name="description" placeholder="...">{{data.description}}</textarea>
+            <input type="submit" id="btn" value="Submit"></input>
+        </form>
+    </div>
+</section>
