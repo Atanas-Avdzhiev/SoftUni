@@ -1,0 +1,216 @@
+.createPage {
+  background-color: #f4f7fa;
+  padding: 50px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.createPage .container {
+  background-color: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  margin-top: 2em;
+}
+
+.createPage h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #6A4E23;
+  text-align: center;
+}
+
+.createPage label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.createPage input,
+.createPage textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  color: #333;
+}
+
+.createPage input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px dashed #E98F08;
+  background-color: #f8f9fa;
+  font-size: 1rem;
+  color: #E98F08;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+}
+
+.createPage input[type="file"]::file-selector-button {
+  background-color: #E98F08;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.createPage input[type="file"]::file-selector-button:hover {
+  background-color: #d47f00;
+}
+
+.createPage input[type="file"]:hover {
+  border-color: #d47f00;
+}
+
+.createPage input[type="text"],
+.createPage input[type="number"] {
+  height: 40px;
+}
+
+.createPage textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+.createPage input:focus,
+.createPage textarea:focus {
+  outline: none;
+  border-color: #d18f00;
+}
+
+.createPage .btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #E98F08;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.createPage .btn:hover {
+  background-color: #d47f00;
+}
+
+.createPage .btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(38, 143, 255, 0.4);
+}
+
+.authError {
+  color: red;
+  font-size: 1em;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.imagePreviewContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 500px;
+  justify-content: start;
+}
+
+.imageWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.imagePreview {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.removeImageButton {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  color: red;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.removeImageButton:hover {
+  background-color: rgb(226, 226, 226);
+  color: darkred;
+}
+
+.imageNumber {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  color: #555;
+  border: none;
+  font-size: 10px;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .createPage {
+    padding: 0px 20px 50px 20px;
+  }
+
+  .createPage form {
+    max-width: 100%;
+  }
+
+  .createPage .container {
+    padding: 0.5em;
+    width: calc(100% - 1em);
+    margin-top: 2em;
+  }
+
+  .createPage input,
+  .createPage textarea {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  .createPage form svg {
+    display: none;
+  }
+
+  .imagePreviewContainer {
+    width: 300px;
+    justify-content: center;
+  }
+
+  .createPage input[type="file"] {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}

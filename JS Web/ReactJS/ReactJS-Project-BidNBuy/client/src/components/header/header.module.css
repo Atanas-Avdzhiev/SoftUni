@@ -1,0 +1,242 @@
+.header {
+    width: 100vw;
+    height: 6.5em;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #eeb052, #ecae3b);
+    padding: 0 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, height 0.3s ease;
+}
+
+.scrolled {
+    background: linear-gradient(135deg, #eca31b, #b37a00);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    height: 5em;
+}
+
+.logo {
+    position: absolute;
+    left: 20%;
+    transform: translateX(-30%);
+}
+
+.home {
+    color: #fff;
+    font-size: 2.5rem;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav {
+    position: absolute;
+    left: 80%;
+    transform: translateX(-60%);
+    width: auto;
+}
+
+/* .nav {
+    display: flex;
+    align-items: center;
+} */
+
+.navList {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.navLink {
+    color: white;
+    text-decoration: none;
+    font-size: 1.4em;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s ease-in-out;
+    white-space: nowrap;
+}
+
+.navLink:hover {
+    color: #fff;
+}
+
+.navLink::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: #ffffff;
+    transition: width 0.3s ease-in-out;
+}
+
+.navLink:hover::after {
+    width: 100%;
+}
+
+.user,
+.guest {
+    display: flex;
+    gap: 2rem;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    width: 10em;
+    padding: 1rem 1rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, top 0.3s ease-in-out;
+    gap: 0.25em;
+}
+
+.guest:hover .dropdownMenu {
+    visibility: visible;
+    opacity: 1;
+    top: 100%;
+}
+
+.dropdownItem {
+    color: #e28000;
+    text-decoration: none;
+    padding: 0.2rem;
+    transition: color 0.2s ease-in-out;
+    font-size: 1.2em;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: max-content;
+    white-space: nowrap;
+}
+
+.dropdownItem::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: orange;
+    transition: width 0.3s ease-in-out;
+}
+
+.dropdownItem:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.menuToggle {
+    display: none;
+    cursor: pointer;
+    font-size: 2rem;
+    color: white;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@media (max-width: 768px) {
+    .header {
+        max-width: 100vw;
+        justify-content: space-around;
+        position: static;
+        padding: 0;
+    }
+
+    .logo {
+        transform: none;
+        position: static;
+    }
+
+    .menuToggle {
+        display: block;
+        transform: none;
+    }
+
+    .scrolled {
+        height: 6.5em;
+    }
+
+    .nav {
+        display: none;
+        background: linear-gradient(135deg, #eeb052, #ecae3b);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        flex-direction: column;
+        position: absolute;
+        top: 6.5em;
+        text-align: center;
+        align-items: end;
+        left: auto;
+        right: 0;
+        transform: none;
+        width: 200px;
+        height: 130px;
+    }
+
+    .nav.active {
+        display: flex;
+    }
+
+    .navList {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .user {
+        display: flex;
+        gap: 0.5em;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .guest {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        gap: 0.5em;
+        width: 100%;
+    }
+
+    .dropdownMenu {
+        top: 0;
+        left: -80%;
+        width: 70%;
+        text-align: center;
+        padding: 0 1rem;
+        height: 130px;
+        justify-content: center;
+    }
+
+    .guest:hover .dropdownMenu {
+        top: 0;
+    }
+
+    .dropdownItem {
+        display: block;
+        width: 100%;
+    }
+}
