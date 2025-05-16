@@ -1,0 +1,12 @@
+p.time-and-author {
+    color: gray;
+}
+
+span {
+    color: gray;
+    font-weight: bold;
+}
+
+time {
+    font-style: italic;
+}
