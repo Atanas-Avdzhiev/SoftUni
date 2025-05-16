@@ -1,0 +1,40 @@
+section p {
+    color: green;
+}
+
+ul.first>li {
+    color: blue;
+}
+
+article+article:not(.highlight) {
+    background-color: red;
+}
+
+h2.specific~p {
+    color: blue;
+}
+
+li.second~li a {
+    color: green;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul.first-ul li:nth-child(2) {
+    color: red;
+}
+
+li {
+    font-weight: bold;
+    margin: 0.5em auto;
+}
+
+ul.first {
+    padding-left: 1em;
+}

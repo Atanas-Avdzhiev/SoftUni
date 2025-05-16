@@ -1,0 +1,36 @@
+p.highlight {
+    color: blue;
+    font-size: 20px;
+}
+
+div#special {
+    background-color: orange;
+    padding: 0.5em;
+}
+
+a {
+    display: block;
+    margin-bottom: 1em;
+}
+
+.my-website {
+    color: blue;
+}
+
+.softuni {
+    text-decoration-line: underline;
+    text-decoration-style: double;
+    color: orange;
+}
+
+.first {
+    color: blue;
+}
+
+li:first-of-type {
+    color: lightseagreen;
+}
+
+li:last-of-type {
+    color: red;
+}
