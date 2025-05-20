@@ -1,0 +1,42 @@
+a,
+button {
+    padding: 1em;
+    border: solid 1px lightgrey;
+    text-decoration: none;
+    color: black;
+    border-radius: 5px;
+    margin: 0.5em 0.5em 0.5em 0;
+    display: inline-block;
+    font-size: 16px;
+}
+
+a:hover,
+button:hover {
+    cursor: pointer;
+    filter: brightness(80%);
+}
+
+a:first-child,
+button:first-child {
+    background-color: #D8D8D8;
+}
+
+a:nth-child(2),
+button:nth-child(2) {
+    background-color: #FF9B00;
+}
+
+a:nth-child(3),
+button:nth-child(3) {
+    background-color: #F9F9CC;
+}
+
+a:nth-child(4),
+button:nth-child(4) {
+    background-color: white;
+}
+
+a:last-child,
+button:last-child {
+    background-color: #D8D8D8;
+}

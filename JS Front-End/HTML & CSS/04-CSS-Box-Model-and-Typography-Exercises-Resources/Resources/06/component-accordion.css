@@ -1,0 +1,36 @@
+body>div {
+    max-width: 1000px;
+    margin: 2em auto;
+}
+
+div>div:first-child,
+div>div:last-child {
+    border: 2px solid lightgray;
+    padding: 1em;
+}
+
+div>div:not(first-child),
+div>div:not(last-child) {
+    border-left: 2px solid lightgray;
+    border-right: 2px solid lightgray;
+    padding: 1em;
+}
+
+summary {
+    font-weight: bold;
+    list-style: none;
+    cursor: pointer;
+}
+
+summary:before {
+    content: '>';
+    font-family: Arial, sans-serif;
+    font-weight: 800;
+    display: inline-block;
+    margin-right: 0.5em;
+    font-size: 0.75em; 
+}
+
+details[open] summary::before {
+    transform: rotate(90deg);
+}

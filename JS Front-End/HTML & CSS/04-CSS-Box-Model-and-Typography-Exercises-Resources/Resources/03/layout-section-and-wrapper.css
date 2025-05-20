@@ -1,0 +1,31 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.first {
+    border: 2px solid green;
+    height: 100vh;
+}
+
+.first>div {
+    border: 2px solid black;
+    height: calc((100% - 10em) / 4);
+    margin: 2em;
+}
+
+.first>div>div {
+    border: 2px solid blue;
+    height: calc(100% - 4em);
+    margin: 2em 10%;
+    position: relative;
+}
+
+p {
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 2em;
+}

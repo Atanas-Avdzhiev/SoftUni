@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.first {
+    border: 2px solid green;
+    height: 40em;
+    height: 70vh;
+    position: relative;
+}
+
+.second {
+    border: 2px solid blue;
+    width: 80%;
+    height: calc(100% - 4em);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+.second div {
+    border: 2px solid black;
+    height: calc((100% - 8em) / 3);
+    margin: 2em;
+    position: relative;
+}
+
+p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+}

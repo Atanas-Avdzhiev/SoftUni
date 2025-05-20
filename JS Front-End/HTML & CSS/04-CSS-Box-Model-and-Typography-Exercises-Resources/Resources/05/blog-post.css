@@ -1,0 +1,17 @@
+.blog {
+    max-width: 800px;
+    border: 2px solid lightgray;
+    padding: 2em;
+    border-radius: 5px;
+    margin: 2em auto;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+h1+p,
+span,
+time {
+    font-weight: bold;
+}

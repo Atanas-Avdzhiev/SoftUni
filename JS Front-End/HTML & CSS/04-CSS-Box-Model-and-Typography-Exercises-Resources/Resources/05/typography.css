@@ -1,0 +1,76 @@
+html {
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: Lato, sans-serif;
+}
+
+p,
+ul,
+ol {
+    padding-bottom: 1.5rem;
+}
+
+ul,
+ol {
+    padding-left: 1.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.2;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    font-family: Lato, sans-serif;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2em;
+}
+
+th {
+    text-align: start;
+    border: 2px solid rgb(196, 196, 196);
+    background-color: rgb(196, 196, 196);
+    width: 33.33%;
+    padding: 0.2em 0.5em;
+}
+
+td {
+    padding: 0.2em 0.5em;
+}
+
+tbody td {
+    border: 2px solid rgb(196, 196, 196);
+}
+
+tbody tr:nth-child(odd) {
+    background-color: rgb(240, 240, 240);
+}
+
+blockquote {
+    position: relative;
+    margin-left: 2em;
+    margin-bottom: 1.5em;
+    padding: 1em 0 1em 2em;
+    border-left: 4px solid lightgray;
+}
+
+blockquote p {
+    font-style: italic;
+}
+
+blockquote cite {
+    position: absolute;
+    bottom: 0.5em;
+    right: 1em;
+}
+
+hr {
+    margin: 2em auto;
+}
