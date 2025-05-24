@@ -1,0 +1,56 @@
+body {
+    background: #EEEEEE;
+}
+
+.box {
+    display: flex;
+    background: white;
+    border-radius: 0.3em;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    padding: 1.5em;
+    margin: 3em auto;
+    width: 80vw;
+    flex-wrap: wrap;
+    gap: 0.8em;
+}
+
+header,
+main,
+aside,
+footer {
+    border: 2px solid #EEEEEE;
+    border-radius: 0.3em;
+    padding: 0.5em 1.5em;
+}
+
+header {
+    flex-basis: 100%;
+}
+
+main {
+    flex-grow: 3;
+}
+
+aside {
+    flex-grow: 1;
+}
+
+footer {
+    flex-basis: 100%;
+}
+
+.box:nth-child(2) header {
+    order: 1;
+}
+
+.box:nth-child(2) aside {
+    order: 2;
+}
+
+.box:nth-child(2) main {
+    order: 3;
+}
+
+.box:nth-child(2) footer {
+    order: 4;
+}
