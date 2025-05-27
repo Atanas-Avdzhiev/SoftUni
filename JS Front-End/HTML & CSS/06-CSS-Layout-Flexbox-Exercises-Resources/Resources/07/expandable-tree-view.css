@@ -1,0 +1,99 @@
+details {
+    margin-left: 2em;
+    position: relative;
+}
+
+details details:not(:first-of-type) {
+    margin-top: 4em;
+}
+
+details details:first-of-type {
+    margin-top: 1em;
+}
+
+summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 0.5em 2em 0 1.5em;
+}
+
+li {
+    display: flex;
+    align-items: center;
+}
+
+details summary::before {
+    content: "+";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 16px;
+    display: flex;
+    color: white;
+    justify-content: center;
+    background: #669966;
+    border-radius: 50%;
+    text-align: center;
+    padding: 0.1em;
+    transform: translateY(30%);
+}
+
+details[open]>summary::before {
+    content: "−";
+}
+
+ul {
+    display: flex;
+    position: absolute;
+    list-style: none;
+    flex-direction: column;
+    gap: 0.5em;
+    margin-top: 0.5em;
+    padding-left: 0.88em;
+}
+
+li::before {
+    display: inline-block;
+    position: relative;
+    content: "";
+    width: 1.5em;
+    height: 6px;
+    background: #DDDDDD;
+    margin-right: 0.25em;
+}
+
+details details summary::after {
+    content: "";
+    width: 1.75em;
+    height: 6px;
+    border-radius: 0.3em;
+    background: #DDDDDD;
+    position: absolute;
+    top: 0.9em;
+    left: -1.25em;
+    z-index: -1;
+}
+
+details[open]::before {
+    content: "";
+    width: 1em;
+    height: calc(100% - 0.85em);
+    border-left: 6px solid #DDDDDD;
+    border-radius: 0.5em;
+    position: absolute;
+    top: 0.5em;
+    left: 0.5em;
+    z-index: -1;
+}
+
+details details[open]::before {
+    content: "";
+    width: 1em;
+    height: 4.1em;
+    border-left: 6px solid #DDDDDD;
+    border-radius: 0.5em;
+    position: absolute;
+    top: 0.5em;
+    left: 0.5em;
+    z-index: -1;
+}

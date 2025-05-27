@@ -1,0 +1,30 @@
+html {
+    font: 16px/1.5 Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #EEEEEE;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border-radius: 0.3em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    margin: 3em auto;
+    padding: 2em;
+}
+
+.title {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+h2 {
+    margin: 0;
+}
