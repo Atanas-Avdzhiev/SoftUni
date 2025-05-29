@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="media-types.css">
+    <title>Media Types</title>
+</head>
+
+<body>
+
+</body>
+<h1>Media Types</h1>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media#media_types"
+    target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS/@media#media_types</a>
+<p>Media types describe the general category of a device. Except when using the not or only logical operators, the media
+    type is optional and the all type is implied.</p>
+
+
+<h2>all</h2>
+<p>Suitable for all devices</p>
+
+<p>
+    @media all {<br>
+    <span style="display:inline-block; width: 2em;">&nbsp;</span>* {<br>
+    <span style="display:inline-block; width: 4em;">&nbsp;</span>padding: 0;<br>
+    <span style="display:inline-block; width: 4em;">&nbsp;</span>margin: 0;<br>
+    <span style="display:inline-block; width: 4em;">&nbsp;</span>box-sizing: border-box;<br>
+    <span style="display:inline-block; width: 2em;">&nbsp;</span>}<br>
+    <br>
+    <span style="display:inline-block; width: 2em;">&nbsp;</span>body {<br>
+    <span style="display:inline-block; width: 4em;">&nbsp;</span>padding: 2em;<br>
+    <span style="display:inline-block; width: 4em;">&nbsp;</span>font: 14px/1.5 Lato, sans-serif;<br>
+    <span style="display:inline-block; width: 2em;">&nbsp;</span>}<br>
+    <br>
+    <span style="display:inline-block; width: 2em;">&nbsp;</span>p {<br>
+    <span style="display:inline-block; width: 4em;">&nbsp;</span>padding-bottom: 1.5em;<br>
+    <span style="display:inline-block; width: 2em;">&nbsp;</span>}<br>
+    }
+</p>
+
+<h2>print</h2>
+<p>Intended for paged material and documents viewed on a screen in print preview mode</p>
+
+<p>
+    @media print {<br>
+    <span style="display:inline-block; width: 2em;">&nbsp;</span>body::before {<br>
+    <span style="display:inline-block; width: 4em;">&nbsp;</span>display: block;<br>
+    <span style="display:inline-block; width: 4em;">&nbsp;</span>content: 'The page is using a print preview or it was
+    printed';<br>
+    <span style="display:inline-block; width: 2em;">&nbsp;</span>}<br>
+    }
+</p>
+
+<h2>screen</h2>
+<p>Intended primarily for screens</p>
+
+<p>
+    @media screen {<br>
+    <span style="display:inline-block; width: 2em;">&nbsp;</span>body::before {<br>
+    <span style="display:inline-block; width: 4em;">&nbsp;</span>display: block;<br>
+    <span style="display:inline-block; width: 4em;">&nbsp;</span>content: 'The page is being shown on a screen';<br>
+    <span style="display:inline-block; width: 2em;">&nbsp;</span>}<br>
+    }
+</p>
+
+</html>
