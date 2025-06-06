@@ -1,0 +1,43 @@
+body {
+    background: #EEEEEE;
+}
+
+.box {
+    display: flex;
+    background: white;
+    border-radius: 0.3em;
+    flex-wrap: wrap;
+    width: 80vw;
+    margin: 4em auto;
+    padding: 2em;
+    gap: 1em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+header,
+main,
+aside,
+footer {
+    border: 2px solid #AFAFAF;
+    border-radius: 0.3em;
+    padding: 2em;
+}
+
+header,
+footer {
+    flex: 0 1 100%;
+}
+
+main {
+    flex-grow: 2;
+}
+
+aside {
+    flex-grow: 1;
+}
+
+@media(max-width:800px) {
+    .box {
+        flex-direction: column;
+    }
+}
