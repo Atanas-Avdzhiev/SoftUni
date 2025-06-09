@@ -1,0 +1,52 @@
+body {
+    background: #EEEEEE;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    width: 95vw;
+    max-width: 1100px;
+    margin: 5em auto;
+    gap: 1em;
+}
+
+.element {
+    position: relative;
+    background: white;
+    border-radius: 0.3em;
+    box-shadow: -2px 2px 0 rgba(88, 88, 88, 0.1);
+    flex: 1 1 300px;
+    padding: 0.5em 2em;
+    max-width: 400px;
+}
+
+.box:after {
+    content: "";
+    position: relative;
+    background: transparent;
+    flex: 1 1 300px;
+    padding: 0.5em 2em;
+    max-width: 400px;
+}
+
+h2 {
+    margin-bottom: 0;
+}
+
+p {
+    max-width: 325px;
+    margin-top: 0.5em;
+}
+
+.number {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5em 1em;
+    color: white;
+    background: #FFA500;
+    border-top-right-radius: 0.3em;
+    border-bottom-left-radius: 0.3em;
+    box-shadow: -2px 2px 0 rgba(88, 88, 88, 0.1);
+}
