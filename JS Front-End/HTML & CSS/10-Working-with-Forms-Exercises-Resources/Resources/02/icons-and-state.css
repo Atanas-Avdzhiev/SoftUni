@@ -1,0 +1,101 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #EEEEEE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    max-width: 400px;
+    padding: 2em;
+    border-radius: 0.3em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+    fieldset {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5em;
+        border: none;
+
+        legend {
+            position: relative;
+            width: fit-content;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding-bottom: 1em;
+            margin-bottom: 1em;
+
+            &:after {
+                display: block;
+                position: absolute;
+                content: "";
+                bottom: 0;
+                left: 0;
+                width: 200%;
+                height: 2px;
+                background: #CCCCCC;
+            }
+        }
+
+        .field {
+            display: flex;
+            position: relative;
+            flex-wrap: wrap;
+            flex: 1 1 100%;
+
+            i {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+
+            label {
+                font-weight: bold;
+                font-size: 0.9em;
+
+                &:after {
+                    content: '*';
+                    color: red;
+                    padding-left: 0.2em;
+                }
+            }
+
+            input {
+                padding: 0.5em 0.8em;
+                border: 2px solid #CCCCCC;
+                border-radius: 0.3em;
+                width: 100%;
+
+                &:focus {
+                    border-color: #FE8B00;
+                    outline: none;
+                }
+            }
+
+            p{
+                font-size: 0.8em;
+               color: #666666; 
+            }
+        }
+
+        button {
+            padding: 1em;
+            background: #FE8B00;
+            color: white;
+            border: none;
+            border-radius: 0.3em;
+            flex: 1 1 100%;
+        }
+    }
+}

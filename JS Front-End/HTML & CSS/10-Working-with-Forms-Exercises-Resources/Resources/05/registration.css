@@ -1,0 +1,99 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #EEEEEE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    max-width: 500px;
+    padding: 2em;
+    border-radius: 0.3em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    gap: 2em;
+
+    h2{
+        margin-bottom: 1em;
+    }
+
+    fieldset {
+        display: flex;
+        flex-wrap: wrap;
+        border: 2px solid #DDDDDD;
+        border-radius: 0.3em;
+        padding: 2em 1.5em;
+        gap: 2em;
+
+        legend {
+            position: relative;
+            width: fit-content;
+            font-weight: bold;
+            color: #4C4C4C;
+            padding-inline: 0.5em;
+        }
+
+        .field {
+            display: flex;
+            position: relative;
+            flex-wrap: wrap;
+            flex: 1 1 100%;
+
+            label {
+                font-weight: bold;
+                font-size: 0.9em;
+                color: #4C4C4C;
+            }
+
+            label.float {
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: translateY(50%);
+                transition: transform 0.2s ease-in;
+                pointer-events: none;
+            }
+
+            input {
+                padding: 0.5em 0.8em 0.5em 5em;
+                border: none;
+                border-bottom: 2px solid #CCCCCC;
+                border-radius: 0.3em;
+                width: 100%;
+            }
+
+            input.date {
+                padding: 0.5em 0.8em;
+            }
+
+            p {
+                margin-top: 0.2em;
+                font-size: 0.8em;
+                color: #7F7F7F;
+            }
+
+            &:focus-within label.float {
+                transform: translateY(-100%);
+            }
+        }
+    }
+
+    button {
+        font-weight: bold;
+        padding: 1em;
+        background: #EFEFEF;
+        border: none;
+        border-radius: 0.3em;
+        margin-top: 1em;
+    }
+}

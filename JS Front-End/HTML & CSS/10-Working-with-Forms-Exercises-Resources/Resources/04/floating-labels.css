@@ -1,0 +1,85 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #EEEEEE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    max-width: 400px;
+    padding: 2em;
+    border-radius: 0.3em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+    fieldset {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5em;
+        border: none;
+
+        legend {
+            position: relative;
+            width: fit-content;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding-bottom: 1em;
+            margin-bottom: 1em;
+        }
+
+        .field {
+            display: flex;
+            position: relative;
+            flex-wrap: wrap;
+            flex: 1 1 100%;
+
+            label {
+                position: absolute;
+                top: 0;
+                left: 0;
+                font-weight: bold;
+                font-size: 0.9em;
+                transform: translateY(50%);
+                transition: transform 0.2s ease-in;
+                pointer-events: none;
+            }
+
+            input {
+                padding: 0.5em 0.8em 0.5em 5em;
+                border: none;
+                border-bottom: 2px solid #CCCCCC;
+                border-radius: 0.3em;
+                width: 100%;
+            }
+
+            p {
+                margin-top: 0.2em;
+                font-size: 0.8em;
+                color: #666666;
+            }
+
+            &:focus-within label {
+                transform: translateY(-100%);
+            }
+        }
+
+        button {
+            font-weight: bold;
+            padding: 1em;
+            background: #EFEFEF;
+            border: none;
+            border-radius: 0.3em;
+            flex: 1 1 100%;
+        }
+    }
+}
