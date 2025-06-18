@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Serif');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'PT Sans', sans-serif;
+}
+
+body>*,
+header,
+section.main {
+    width: 100%;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'PT Serif', serif;
+}
+
+div.background-image {
+    min-height: 100vh;
+    background-image: url('images/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.inner {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2em 4em;
+
+    img {
+        width: 110px;
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+        gap: 2em;
+
+        li a {
+            color: white;
+            text-transform: uppercase;
+            font-size: 18px;
+            text-decoration: none;
+        }
+    }
+}
+
+section.main {
+    max-width: 800px;
+    margin-top: 2em;
+
+    h1 {
+        color: white;
+        font-size: 68px;
+        font-weight: 100;
+    }
+
+    p {
+        color: white;
+        font-size: 25px;
+        line-height: 1.75;
+        margin-top: 1em;
+    }
+}
+
+section.aims-objectives {
+    padding-top: 8em;
+    padding-bottom: 8em;
+    border-bottom: 2px solid #CCCCCC;
+
+    .inner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4em;
+
+        div.section {
+            display: flex;
+            flex-direction: column;
+            gap: 2em;
+
+            h2 {
+                font-size: 60px;
+                font-weight: 100;
+                opacity: 0.8;
+            }
+
+            p {
+                font-size: 20px;
+                opacity: 0.8;
+                line-height: 1.75;
+            }
+
+            a {
+                text-decoration: none;
+                border: 2px solid #B0825C;
+                color: #B0825C;
+                padding: 0.7em 1.5em;
+                font-size: 20px;
+                width: fit-content;
+                font-weight: bold;
+            }
+        }
+    }
+
+}
+
+section.sponsors {
+    padding-top: 4em;
+    padding-bottom: 4em;
+
+    .inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2em;
+
+        h2 {
+            font-size: 60px;
+            font-weight: 100;
+            color: #B0825C;
+        }
+
+        p {
+            font-size: 20px;
+            opacity: 0.6;
+            text-align: center;
+        }
+
+        .media {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2em;
+            gap: 6em;
+
+            .img-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #DDDDDD;
+                width: 180px;
+                height: 180px;
+                border-radius: 50%;
+
+                img {
+                    width: 120px;
+                    height: auto;
+                }
+
+            }
+
+        }
+    }
+}
+
+section.partners {
+    padding-bottom: 4em;
+
+    .inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2em;
+
+        h2 {
+            font-size: 60px;
+            font-weight: 100;
+            color: #B0825C;
+        }
+
+        p {
+            font-size: 20px;
+            opacity: 0.6;
+            text-align: center;
+        }
+
+    }
+}
+
+footer {
+    background-color: #171720;
+
+    .links {
+        display: flex;
+        padding-top: 4em;
+        padding-bottom: 4em;
+        gap: 5em;
+
+        &>div{
+            min-width: 250px;
+        }
+
+        h3 {
+            font-size: 25px;
+            margin-bottom: 2em;
+            color: white;
+            font-weight: 100;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            gap: 1.5em;
+
+            li a {
+                font-size: 16px;
+                text-transform: uppercase;
+                color: white;
+                opacity: 0.5;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .copyright {
+        border-top: 1px solid #3A3A41;
+        padding: 1.5em 0;
+
+        p {
+            color: white;
+            opacity: 0.5;
+        }
+    }
+
+}
