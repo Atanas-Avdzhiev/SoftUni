@@ -1,0 +1,1 @@
+I also made the website in the third task reponsive
